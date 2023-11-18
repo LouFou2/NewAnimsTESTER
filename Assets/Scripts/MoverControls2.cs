@@ -71,10 +71,8 @@ public class MoverControls2 : MonoBehaviour
         float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
 
         // == Moving the Character (moving the root) == //
-        Vector3 rootLocalPosition = rootObject.transform.localPosition;
-        float rootZ_MoveDistance = rootLocalPosition.z;
-        rootZ_MoveDistance += Time.deltaTime * moveSpeed * stepDistance; // have to multiply this with the "legIKTarget amplitude" ?
-        rootObject.transform.localPosition = new Vector3(rootLocalPosition.x, rootLocalPosition.y, rootZ_MoveDistance);
+        float rootZ_MoveDistance = Time.deltaTime * moveSpeed * stepDistance;
+        rootObject.transform.Translate(rootObject.transform.forward * rootZ_MoveDistance, Space.World);
 
         for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
         {
