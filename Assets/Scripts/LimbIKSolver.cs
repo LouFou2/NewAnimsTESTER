@@ -12,9 +12,14 @@ public class LimbIKSolver : MonoBehaviour
     public Transform jointBone;
     public Transform tipBone;
 
+    private Quaternion rootBoneRotation; // using these to store intitial rotations
+    private Quaternion jointBoneRotation;
+
     // The IK target:
     [Header("Rotate IKTarget Y to position Hint in z.forward direction")]
     public Transform IKtargetObject; // VERY IMPORTANT : the y rotation of the target will also locate the hint
+
+    private Quaternion IKTargetRotation; // using these to store intitial rotations
 
     // These components are used to clamp joint movement between a "midpoint"and a "hint" object
     public Transform midPointObject;
@@ -31,6 +36,10 @@ public class LimbIKSolver : MonoBehaviour
     {
         segment1Length = Vector3.Distance(rootBone.position, jointBone.position); // set this in the start, it shouldnt update
         segment2Length = Vector3.Distance(jointBone.position, tipBone.position);
+
+        rootBoneRotation = rootBone.rotation;
+        jointBoneRotation = jointBone.rotation;
+        IKTargetRotation = IKtargetObject.rotation;
     }
     void LateUpdate()
     {
@@ -53,7 +62,7 @@ public class LimbIKSolver : MonoBehaviour
 
         // 3. Orient the Mid Point
         midPointObject.rotation = IKtargetObject.rotation; // temporarily aligning orientation with Target Object
-        OrientYLookat(midPointObject, tipBone); // this points the y axis of midPointObject at the tipBone, so now the z negative should be perpendicular
+        OrientYLookat(midPointObject, tipBone, IKTargetRotation); // this points the y axis of midPointObject at the tipBone, so now the z negative should be perpendicular
 
         // 4. Position the Hint
         midPointToHintDistance = segment1Length; // the hint will be segment1 distance away from midpoint, at perpendicular angle
@@ -66,16 +75,19 @@ public class LimbIKSolver : MonoBehaviour
         jointBone.position = Vector3.Lerp(hintObject.position, midPoint, normalisedFactor);
 
         // 6. Orient Joint Bone
-        OrientYLookat(jointBone, tipBone);
+        float jointYRotation = jointBoneRotation.eulerAngles.y;
+        OrientYLookat(jointBone, tipBone, jointBoneRotation);
 
         // 7. Orient Root Bone
-        OrientYLookat(rootBone, jointBone);
+        OrientYLookat(rootBone, jointBone, rootBoneRotation);
 
     }
 
-    void OrientYLookat(Transform thisBone, Transform targetBone)
+    void OrientYLookat(Transform thisBone, Transform targetBone, Quaternion initialRotation)
     {
+        
         Vector3 boneTargetDirection = targetBone.position - thisBone.position;
+        thisBone.localRotation = initialRotation;
         Quaternion boneTargetRotation = Quaternion.FromToRotation(thisBone.up, boneTargetDirection.normalized) * thisBone.rotation;
 
         // Rotate bone

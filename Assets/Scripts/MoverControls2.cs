@@ -200,7 +200,7 @@ public class MoverControls2 : MonoBehaviour
         float stepperR_LocalZ_Position = stepperR_LocalPosition.z;
         stepperL_LocalZ_Position *= stepDistance;
         stepperR_LocalZ_Position *= stepDistance;
-        stepperL_LocalZ_Position += stepDistance / 2;
+        stepperL_LocalZ_Position += stepDistance / 2; // have to shift position forward otherwise root is moving along with front foot
         stepperR_LocalZ_Position += stepDistance / 2;
         stepControllerL.transform.localPosition = new Vector3(stepperL_LocalPosition.x, stepperL_LocalPosition.y, stepperL_LocalZ_Position);
         stepControllerR.transform.localPosition = new Vector3(stepperR_LocalPosition.x, stepperR_LocalPosition.y, stepperR_LocalZ_Position);
