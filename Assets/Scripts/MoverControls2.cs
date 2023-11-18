@@ -28,13 +28,13 @@ public class MoverControls2 : MonoBehaviour
                 MoveData.ObjectParameters objParams = moveData.moverObjectsParameters[i];
                 GameObject currentObject = moverObjects[i];
 
-                objParams.xPosition = currentObject.transform.localPosition.x;
-                objParams.yPosition = currentObject.transform.localPosition.y;
-                objParams.zPosition = currentObject.transform.localPosition.z;
+                objParams.xLocalPosition = currentObject.transform.localPosition.x;
+                objParams.yLocalPosition = currentObject.transform.localPosition.y;
+                objParams.zLocalPosition = currentObject.transform.localPosition.z;
 
-                objParams.xRotation = currentObject.transform.localRotation.x;
-                objParams.yRotation = currentObject.transform.localRotation.y;
-                objParams.zRotation = currentObject.transform.localRotation.z;
+                objParams.xLocalRotation = currentObject.transform.localRotation.x;
+                objParams.yLocalRotation = currentObject.transform.localRotation.y;
+                objParams.zLocalRotation = currentObject.transform.localRotation.z;
             }
 
             moveSpeed = moveData.moveSpeed;
@@ -149,15 +149,15 @@ public class MoverControls2 : MonoBehaviour
 
             if (movePosition)
             {
-                localX = objParams.xPosition;
-                localY = objParams.yPosition;
-                localZ = objParams.zPosition;
+                localX = objParams.xLocalPosition;
+                localY = objParams.yLocalPosition;
+                localZ = objParams.zLocalPosition;
             }
             if (moveRotation)
             {
-                localX = (objParams.xRotation) / 180;
-                localY = (objParams.yRotation) / 180;
-                localZ = (objParams.zRotation) / 180;
+                localX = (objParams.xLocalRotation) / 180;
+                localY = (objParams.yLocalRotation) / 180;
+                localZ = (objParams.zLocalRotation) / 180;
             }
 
             if (x_IsSine)
@@ -192,15 +192,18 @@ public class MoverControls2 : MonoBehaviour
                 currentObject.transform.localRotation = Quaternion.Euler(localX, localY, localZ);
             }
         }
+
         // == Multiply the step movement by step distance == //
         Vector3 stepperL_LocalPosition = stepControllerL.transform.localPosition;
         Vector3 stepperR_LocalPosition = stepControllerR.transform.localPosition;
-        float stepperL_Z_MoveDistance = stepperL_LocalPosition.z;
-        float stepperR_Z_MoveDistance = stepperR_LocalPosition.z;
-        stepperL_Z_MoveDistance *= stepDistance;
-        stepperR_Z_MoveDistance *= stepDistance;
-        stepControllerL.transform.localPosition = new Vector3(stepperL_LocalPosition.x, stepperL_LocalPosition.y, stepperL_Z_MoveDistance);
-        stepControllerR.transform.localPosition = new Vector3(stepperR_LocalPosition.x, stepperR_LocalPosition.y, stepperR_Z_MoveDistance);
+        float stepperL_LocalZ_Position = stepperL_LocalPosition.z;
+        float stepperR_LocalZ_Position = stepperR_LocalPosition.z;
+        stepperL_LocalZ_Position *= stepDistance;
+        stepperR_LocalZ_Position *= stepDistance;
+        stepperL_LocalZ_Position += stepDistance / 2;
+        stepperR_LocalZ_Position += stepDistance / 2;
+        stepControllerL.transform.localPosition = new Vector3(stepperL_LocalPosition.x, stepperL_LocalPosition.y, stepperL_LocalZ_Position);
+        stepControllerR.transform.localPosition = new Vector3(stepperR_LocalPosition.x, stepperR_LocalPosition.y, stepperR_LocalZ_Position);
     }
 
     float SineValue(float X, float frequency, float amplitude, float phaseOffset, float Y_Offset) // X and Y represents values on sine graph, not to be confused with object space

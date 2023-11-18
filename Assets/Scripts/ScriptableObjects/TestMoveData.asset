@@ -15,8 +15,8 @@ MonoBehaviour:
   updated:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 0.39
-  stepDistance: 3.2
+  moveSpeed: 2
+  stepDistance: 3.99
   moverObjectsParameters:
   - objectName: HipPosition
     movePosition: 1
@@ -66,12 +66,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xPosition: 0
-    yPosition: -5.97
-    zPosition: -0.22
-    xRotation: -0.030187197
-    yRotation: -0
-    zRotation: -0
+    xLocalPosition: -0.00000070741305
+    yLocalPosition: -8.768139
+    zLocalPosition: 0.0000011920929
+    xLocalRotation: 0.10229927
+    yLocalRotation: -0.00000011411224
+    zLocalRotation: 0.00000003128703
   - objectName: HipRotation
     movePosition: 0
     moveRotation: 1
@@ -120,12 +120,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xPosition: 0
-    yPosition: -5.97
-    zPosition: -0.22
-    xRotation: -0.030187197
-    yRotation: -0
-    zRotation: -0
+    xLocalPosition: -0.00000070741305
+    yLocalPosition: -8.768139
+    zLocalPosition: 0.0000011920929
+    xLocalRotation: 0.10229927
+    yLocalRotation: -0.00000011411224
+    zLocalRotation: 0.00000003128703
   - objectName: LegIKTargetL
     movePosition: 1
     moveRotation: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 1
-    Y_amplitude: -7.5
+    Y_amplitude: -3
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: 0
@@ -170,16 +170,25 @@ MonoBehaviour:
     Z_ClampMax: 7
     Z_Curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
       m_RotationOrder: 0
-    xPosition: 0.32
-    yPosition: -10.83
-    zPosition: -0.6
-    xRotation: -0
-    yRotation: -0.08540591
-    zRotation: 0.9963463
+    xLocalPosition: -0.30219072
+    yLocalPosition: -7.72342
+    zLocalPosition: -0.3768173
+    xLocalRotation: -0
+    yLocalRotation: -0
+    zLocalRotation: 1
   - objectName: LegIKTarget_R
     movePosition: 1
     moveRotation: 0
@@ -205,7 +214,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 1
-    Y_amplitude: 7.84
+    Y_amplitude: 3
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: 0
@@ -224,16 +233,25 @@ MonoBehaviour:
     Z_ClampMax: 7
     Z_Curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
       m_RotationOrder: 0
-    xPosition: -0.3199999
-    yPosition: -10.83
-    zPosition: -0.6
-    xRotation: -0
-    yRotation: -0.08540591
-    zRotation: 0.9963463
+    xLocalPosition: 0.118231416
+    yLocalPosition: -7.293971
+    zLocalPosition: -0.22648096
+    xLocalRotation: 0
+    yLocalRotation: 0
+    zLocalRotation: 1
   - objectName: ArmIKTargetL
     movePosition: 1
     moveRotation: 0
@@ -282,12 +300,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xPosition: -2.97
-    yPosition: -6.36
-    zPosition: -0.46
-    xRotation: 0.99995476
-    yRotation: -0.0042324183
-    zRotation: -0.000036049336
+    xLocalPosition: -1.9323542
+    yLocalPosition: -4.6250753
+    zLocalPosition: 0.23023963
+    xLocalRotation: 0.99995476
+    yLocalRotation: -0.0042324183
+    zLocalRotation: -0.000036049336
   - objectName: ArmIKTargetR
     movePosition: 1
     moveRotation: 0
@@ -336,13 +354,13 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xPosition: 2.9699998
-    yPosition: -6.36
-    zPosition: -0.46
-    xRotation: 0.99995476
-    yRotation: -0.0042324183
-    zRotation: -0.000036049336
-  - objectName: ShoulderPosition
+    xLocalPosition: 1.9323509
+    yLocalPosition: -4.6250763
+    zLocalPosition: 0.23023844
+    xLocalRotation: 0.99995476
+    yLocalRotation: -0.0042324183
+    zLocalRotation: -0.000036049336
+  - objectName: BodyIKTargetPosition
     movePosition: 1
     moveRotation: 0
     x_IsSineMovement: 1
@@ -390,12 +408,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xPosition: 0
-    yPosition: 0
-    zPosition: 0
-    xRotation: 0
-    yRotation: 1
-    zRotation: 0
+    xLocalPosition: -0.0000011321515
+    yLocalPosition: -3.9096985
+    zLocalPosition: 0.2011323
+    xLocalRotation: 0
+    yLocalRotation: 1
+    zLocalRotation: 0
   - objectName: ShoulderRotate
     movePosition: 0
     moveRotation: 1
@@ -444,12 +462,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xPosition: 0
-    yPosition: 0
-    zPosition: 0
-    xRotation: -0
-    yRotation: -0
-    zRotation: -0
+    xLocalPosition: -0.0000011321515
+    yLocalPosition: -3.9096985
+    zLocalPosition: 0.2011323
+    xLocalRotation: -0.10897705
+    yLocalRotation: -0.00000012326285
+    zLocalRotation: 0.00000005644214
   - objectName: BodyTargetRotation
     movePosition: 0
     moveRotation: 1
@@ -498,9 +516,117 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xPosition: 0
-    yPosition: 0
-    zPosition: 0
-    xRotation: 0
-    yRotation: 1
-    zRotation: 0
+    xLocalPosition: -0.0000011321515
+    yLocalPosition: -3.9096985
+    zLocalPosition: 0.2011323
+    xLocalRotation: 0
+    yLocalRotation: 1
+    zLocalRotation: 0
+  - objectName: HeadPosition
+    movePosition: 1
+    moveRotation: 0
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 1
+    X_amplitude: 0.5
+    X_phaseOffset: 0
+    X_returnValueOffset: 0
+    X_ClampMin: -1
+    X_ClampMax: 1
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 2
+    Y_amplitude: 2.3
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: -5
+    Y_ClampMax: 5
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 0
+    Z_amplitude: 0
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 1
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: -0.0000012849836
+    yLocalPosition: -4.3115034
+    zLocalPosition: 0.34503937
+    xLocalRotation: 0.0829918
+    yLocalRotation: -0.00000011517034
+    zLocalRotation: 0.000000033667188
+  - objectName: HeadRotate
+    movePosition: 0
+    moveRotation: 1
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 2
+    X_amplitude: -0.07
+    X_phaseOffset: 0
+    X_returnValueOffset: 0
+    X_ClampMin: -1
+    X_ClampMax: 1
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 1
+    Y_amplitude: 0.1
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: -1
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 1
+    Z_amplitude: -0.1
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 1
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: -0.0000012849836
+    yLocalPosition: -4.3115034
+    zLocalPosition: 0.34503937
+    xLocalRotation: 0.0829918
+    yLocalRotation: -0.00000011517034
+    zLocalRotation: 0.000000033667188

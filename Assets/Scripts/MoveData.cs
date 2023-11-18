@@ -47,13 +47,13 @@ public class MoveData : ScriptableObject
         public float Z_ClampMax;
         public AnimationCurve Z_Curve;
 
-        [HideInInspector] public float xPosition;
-        [HideInInspector] public float yPosition;
-        [HideInInspector] public float zPosition;
+        [HideInInspector] public float xLocalPosition;
+        [HideInInspector] public float yLocalPosition;
+        [HideInInspector] public float zLocalPosition;
 
-        [HideInInspector] public float xRotation;
-        [HideInInspector] public float yRotation;
-        [HideInInspector] public float zRotation;
+        [HideInInspector] public float xLocalRotation;
+        [HideInInspector] public float yLocalRotation;
+        [HideInInspector] public float zLocalRotation;
     }
 
     public float moveSpeed = 1f;
