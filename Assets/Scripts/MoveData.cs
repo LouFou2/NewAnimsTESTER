@@ -56,7 +56,10 @@ public class MoveData : ScriptableObject
         [HideInInspector] public float zRotation;
     }
 
-    public float moveSpeed;
+    public float moveSpeed = 1f;
+    public float stepDistance = 1f;
+    [Header("LegIK Targets Z position Amplitude should be 1 unit\n 'Amplitude' is set by Step Distance")]
+    //[Header("'Amplitude' is set by Step Distance")]
     public ObjectParameters[] moverObjectsParameters;
 
     private void OnEnable()

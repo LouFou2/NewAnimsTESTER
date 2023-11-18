@@ -15,7 +15,8 @@ MonoBehaviour:
   updated:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 1.76
+  moveSpeed: 0.39
+  stepDistance: 3.2
   moverObjectsParameters:
   - objectName: HipPosition
     movePosition: 1
@@ -150,11 +151,11 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 1
-    Y_amplitude: -3
+    Y_amplitude: -7.5
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: 0
-    Y_ClampMax: 3
+    Y_ClampMax: 10
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -162,7 +163,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 1
-    Z_amplitude: -7
+    Z_amplitude: -1
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -7
@@ -204,11 +205,11 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 1
-    Y_amplitude: 3
+    Y_amplitude: 7.84
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: 0
-    Y_ClampMax: 3
+    Y_ClampMax: 10
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -216,7 +217,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 1
-    Z_amplitude: 7
+    Z_amplitude: 1
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -7

@@ -5,10 +5,17 @@ public class MoverControls2 : MonoBehaviour
 {
     [SerializeField] private MoveData moveData;
 
+    [SerializeField] private GameObject rootObject;
+
+    // == Have to add the objects that control the legs == //
+    [SerializeField] private GameObject stepControllerL;
+    [SerializeField] private GameObject stepControllerR;
+
     [Header("Put Mover Objects in same order as in MoveData Scriptable Object")]
     [SerializeField] private GameObject[] moverObjects; // IMPORTANT: this array HAS to have same objects as scriptable object, in SAME ORDER
 
     private float moveSpeed;
+    private float stepDistance;
     private float moverTime = 0f; // this represents the x value of the sine graph
 
     private void Start()
@@ -31,6 +38,7 @@ public class MoverControls2 : MonoBehaviour
             }
 
             moveSpeed = moveData.moveSpeed;
+            stepDistance = moveData.stepDistance;
         }
         else
         {
@@ -48,6 +56,7 @@ public class MoverControls2 : MonoBehaviour
     void MoveDataUpdates()
     {
         moveSpeed = moveData.moveSpeed;
+        stepDistance = moveData.stepDistance;
 
         for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
         {
@@ -60,6 +69,12 @@ public class MoverControls2 : MonoBehaviour
         moverTime += Time.deltaTime * moveSpeed;
         if (moverTime >= Mathf.PI * 2) moverTime = 0f;
         float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
+
+        // == Moving the Character (moving the root) == //
+        Vector3 rootLocalPosition = rootObject.transform.localPosition;
+        float rootZ_MoveDistance = rootLocalPosition.z;
+        rootZ_MoveDistance += Time.deltaTime * moveSpeed * stepDistance; // have to multiply this with the "legIKTarget amplitude" ?
+        rootObject.transform.localPosition = new Vector3(rootLocalPosition.x, rootLocalPosition.y, rootZ_MoveDistance);
 
         for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
         {
@@ -179,6 +194,15 @@ public class MoverControls2 : MonoBehaviour
                 currentObject.transform.localRotation = Quaternion.Euler(localX, localY, localZ);
             }
         }
+        // == Multiply the step movement by step distance == //
+        Vector3 stepperL_LocalPosition = stepControllerL.transform.localPosition;
+        Vector3 stepperR_LocalPosition = stepControllerR.transform.localPosition;
+        float stepperL_Z_MoveDistance = stepperL_LocalPosition.z;
+        float stepperR_Z_MoveDistance = stepperR_LocalPosition.z;
+        stepperL_Z_MoveDistance *= stepDistance;
+        stepperR_Z_MoveDistance *= stepDistance;
+        stepControllerL.transform.localPosition = new Vector3(stepperL_LocalPosition.x, stepperL_LocalPosition.y, stepperL_Z_MoveDistance);
+        stepControllerR.transform.localPosition = new Vector3(stepperR_LocalPosition.x, stepperR_LocalPosition.y, stepperR_Z_MoveDistance);
     }
 
     float SineValue(float X, float frequency, float amplitude, float phaseOffset, float Y_Offset) // X and Y represents values on sine graph, not to be confused with object space
