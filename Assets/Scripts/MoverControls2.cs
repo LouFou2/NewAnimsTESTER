@@ -6,6 +6,7 @@ public class MoverControls2 : MonoBehaviour
     [SerializeField] private MoveData moveData;
 
     [SerializeField] private GameObject rootObject;
+    [SerializeField] private bool freezeRootPosition = false;
 
     // == Have to add the objects that control the legs == //
     [SerializeField] private GameObject stepControllerL;
@@ -18,6 +19,16 @@ public class MoverControls2 : MonoBehaviour
     private float stepDistance;
     private float moverTime = 0f; // this represents the x value of the sine graph
 
+    private void Awake()
+    {
+        //moverObjects.Length = moveData.moverObjectsParameters.Length;
+        for (int i = 0; i < moverObjects.Length; i++)
+        {
+            MoveData.ObjectParameters objParams = moveData.moverObjectsParameters[i];
+            GameObject currentObject = moverObjects[i];
+            currentObject.name = objParams.objectName;
+        }
+    }
     private void Start()
     {
         // Ensure that the arrays have the same length
@@ -72,6 +83,7 @@ public class MoverControls2 : MonoBehaviour
 
         // == Moving the Character (moving the root) == //
         float rootZ_MoveDistance = Time.deltaTime * moveSpeed * stepDistance;
+        if (freezeRootPosition) rootZ_MoveDistance = 0f;
         rootObject.transform.Translate(rootObject.transform.forward * rootZ_MoveDistance, Space.World);
 
         for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
