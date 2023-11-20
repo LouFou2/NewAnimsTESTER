@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48881cd0bacebb04d86b455ea9faac0e, type: 3}
-  m_Name: TestMoveData
+  m_Name: Walk2
   m_EditorClassIdentifier: 
   updated:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 1
-  stepDistance: 4
-  freezePosition: 0
+  moveSpeed: 2
+  stepDistance: 3
+  freezePosition: 1
   moverObjectsParameters:
   - objectName: LegIKTargetL
     movePosition: 1
     moveRotation: 0
-    x_IsSineMovement: 1
-    x_IsCosineMovement: 0
+    x_IsSineMovement: 0
+    x_IsCosineMovement: 1
     x_IsLerpCurveMovement: 0
     y_IsSineMovement: 0
     y_IsCosineMovement: 1
@@ -31,10 +31,10 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 0
-    X_amplitude: 0
+    X_frequency: 2
+    X_amplitude: -1
     X_phaseOffset: 0
-    X_returnValueOffset: 0
+    X_returnValueOffset: 1
     X_ClampMin: -1
     X_ClampMax: 1
     X_Curve:
@@ -43,9 +43,9 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 1
-    Y_amplitude: -2
-    Y_phaseOffset: -1
+    Y_frequency: 2
+    Y_amplitude: 3
+    Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: 0
     Y_ClampMax: 10
@@ -64,12 +64,12 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
-    Z_frequency: 1
+    Z_frequency: 2
     Z_amplitude: 1
     Z_phaseOffset: 0
     Z_returnValueOffset: -0.3
-    Z_ClampMin: -7
-    Z_ClampMax: 7
+    Z_ClampMin: -2
+    Z_ClampMax: 1
     Z_Curve:
       serializedVersion: 2
       m_Curve:
@@ -94,8 +94,8 @@ MonoBehaviour:
   - objectName: LegIKTarget_R
     movePosition: 1
     moveRotation: 0
-    x_IsSineMovement: 1
-    x_IsCosineMovement: 0
+    x_IsSineMovement: 0
+    x_IsCosineMovement: 1
     x_IsLerpCurveMovement: 0
     y_IsSineMovement: 0
     y_IsCosineMovement: 1
@@ -103,10 +103,10 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 0
-    X_amplitude: 0
+    X_frequency: 2
+    X_amplitude: -1
     X_phaseOffset: 0
-    X_returnValueOffset: 0
+    X_returnValueOffset: -1
     X_ClampMin: -1
     X_ClampMax: 1
     X_Curve:
@@ -115,9 +115,9 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 1
-    Y_amplitude: 3
-    Y_phaseOffset: 1
+    Y_frequency: 2
+    Y_amplitude: -3
+    Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: 0
     Y_ClampMax: 10
@@ -127,8 +127,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: -1
-    Z_amplitude: 1
+    Z_frequency: 2
+    Z_amplitude: -1
     Z_phaseOffset: 0
     Z_returnValueOffset: -0.3
     Z_ClampMin: -7
@@ -166,22 +166,22 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 2
-    X_amplitude: -1
+    X_frequency: 4
+    X_amplitude: -0.5
     X_phaseOffset: 0
-    X_returnValueOffset: 0
-    X_ClampMin: -1
-    X_ClampMax: 1
+    X_returnValueOffset: 1
+    X_ClampMin: -4
+    X_ClampMax: 3
     X_Curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 2
-    Y_amplitude: -1
-    Y_phaseOffset: 0
-    Y_returnValueOffset: 0
+    Y_frequency: 4
+    Y_amplitude: -0.5
+    Y_phaseOffset: 0.5
+    Y_returnValueOffset: 0.5
     Y_ClampMin: -2
     Y_ClampMax: 6
     Y_Curve:
@@ -190,8 +190,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: -1
-    Z_amplitude: 4
+    Z_frequency: 2
+    Z_amplitude: -2.5
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -7
@@ -220,11 +220,11 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 2
-    X_amplitude: 1
+    X_frequency: 4
+    X_amplitude: 0.5
     X_phaseOffset: 0
-    X_returnValueOffset: 0
-    X_ClampMin: -1
+    X_returnValueOffset: -1
+    X_ClampMin: -2
     X_ClampMax: 1
     X_Curve:
       serializedVersion: 2
@@ -232,10 +232,10 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 2
-    Y_amplitude: -1
+    Y_frequency: 4
+    Y_amplitude: -0.5
     Y_phaseOffset: 0
-    Y_returnValueOffset: 0
+    Y_returnValueOffset: 0.5
     Y_ClampMin: -2
     Y_ClampMax: 6
     Y_Curve:
@@ -244,8 +244,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: 1
-    Z_amplitude: 4
+    Z_frequency: 2
+    Z_amplitude: 2.5
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -7
@@ -268,14 +268,14 @@ MonoBehaviour:
     x_IsSineMovement: 1
     x_IsCosineMovement: 0
     x_IsLerpCurveMovement: 0
-    y_IsSineMovement: 1
-    y_IsCosineMovement: 0
+    y_IsSineMovement: 0
+    y_IsCosineMovement: 1
     y_IsLerpCurveMovement: 0
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 1
-    X_amplitude: -0.4
+    X_frequency: 2
+    X_amplitude: -0.2
     X_phaseOffset: 0
     X_returnValueOffset: 0
     X_ClampMin: -1
@@ -286,10 +286,10 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 2
-    Y_amplitude: 1
+    Y_frequency: 4
+    Y_amplitude: 0.5
     Y_phaseOffset: 0
-    Y_returnValueOffset: 0
+    Y_returnValueOffset: -0.4
     Y_ClampMin: -6
     Y_ClampMax: 6
     Y_Curve:
@@ -301,7 +301,7 @@ MonoBehaviour:
     Z_frequency: 0
     Z_amplitude: 0
     Z_phaseOffset: 0
-    Z_returnValueOffset: 0
+    Z_returnValueOffset: 0.3
     Z_ClampMin: -1
     Z_ClampMax: 1
     Z_Curve:
@@ -328,10 +328,10 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 2
-    X_amplitude: 0.05
-    X_phaseOffset: 0.7
-    X_returnValueOffset: 0
+    X_frequency: 4
+    X_amplitude: 0.015
+    X_phaseOffset: 0.9
+    X_returnValueOffset: 0.02
     X_ClampMin: -1
     X_ClampMax: 1
     X_Curve:
@@ -340,8 +340,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 1
-    Y_amplitude: 0.15
+    Y_frequency: 2
+    Y_amplitude: 0.05
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: -2
@@ -352,8 +352,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: 1
-    Z_amplitude: 0.1
+    Z_frequency: 2
+    Z_amplitude: 0.03
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -1
@@ -436,9 +436,9 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 2
-    X_amplitude: 0.05
-    X_phaseOffset: 0.4
+    X_frequency: 4
+    X_amplitude: -0.01
+    X_phaseOffset: 0.9
     X_returnValueOffset: 0
     X_ClampMin: -1
     X_ClampMax: 1
@@ -448,8 +448,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 1
-    Y_amplitude: -0.1
+    Y_frequency: 2
+    Y_amplitude: -0.03
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: -1
@@ -460,8 +460,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: 1
-    Z_amplitude: -0.1
+    Z_frequency: 2
+    Z_amplitude: -0.01
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -1
@@ -544,9 +544,9 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 2
-    X_amplitude: 0.07
-    X_phaseOffset: 0.3
+    X_frequency: 4
+    X_amplitude: -0.03
+    X_phaseOffset: 0.9
     X_returnValueOffset: 0
     X_ClampMin: -1
     X_ClampMax: 1
@@ -556,8 +556,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 1
-    Y_amplitude: -0.15
+    Y_frequency: 2
+    Y_amplitude: -0.03
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: -1
@@ -568,8 +568,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: 0
-    Z_amplitude: 0
+    Z_frequency: 2
+    Z_amplitude: -0.03
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -1
@@ -652,9 +652,9 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 2
-    X_amplitude: 0.1
-    X_phaseOffset: 0.5
+    X_frequency: 4
+    X_amplitude: -0.02
+    X_phaseOffset: 0.9
     X_returnValueOffset: 0
     X_ClampMin: -1
     X_ClampMax: 1
@@ -664,8 +664,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: -1
-    Y_amplitude: 0.1
+    Y_frequency: 2
+    Y_amplitude: -0.05
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: -1
@@ -676,8 +676,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: 0
-    Z_amplitude: 0
+    Z_frequency: 2
+    Z_amplitude: -0.015
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -1
@@ -760,9 +760,9 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 2
-    X_amplitude: 0.15
-    X_phaseOffset: 0
+    X_frequency: 4
+    X_amplitude: -0.01
+    X_phaseOffset: 0.9
     X_returnValueOffset: 0
     X_ClampMin: -1
     X_ClampMax: 1
@@ -772,8 +772,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 1
-    Y_amplitude: 0.17
+    Y_frequency: 2
+    Y_amplitude: 0.05
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: -1
@@ -784,8 +784,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: 0
-    Z_amplitude: 0
+    Z_frequency: 2
+    Z_amplitude: 0.01
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -1
@@ -868,9 +868,9 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 2
-    X_amplitude: 0.06
-    X_phaseOffset: 0.1
+    X_frequency: 4
+    X_amplitude: 0.01
+    X_phaseOffset: 0.9
     X_returnValueOffset: 0
     X_ClampMin: -1
     X_ClampMax: 1
@@ -880,10 +880,64 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 1
-    Y_amplitude: 0.05
+    Y_frequency: 2
+    Y_amplitude: 0.03
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
+    Y_ClampMin: -1
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 2
+    Z_amplitude: 0.03
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 1
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: 2.842171e-13
+    yLocalPosition: 1.6319023
+    zLocalPosition: 0.00000047683716
+    xLocalRotation: -0.04363894
+    yLocalRotation: 4.1857446e-15
+    zLocalRotation: 0.0000000104043165
+  - objectName: HandLRotate
+    movePosition: 0
+    moveRotation: 1
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 2
+    X_amplitude: -0.3
+    X_phaseOffset: -0.1
+    X_returnValueOffset: 1
+    X_ClampMin: -1
+    X_ClampMax: 2
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 0
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 1
     Y_ClampMin: -1
     Y_ClampMax: 1
     Y_Curve:
@@ -904,9 +958,171 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 2.842171e-13
-    yLocalPosition: 1.6319023
-    zLocalPosition: 0.00000047683716
-    xLocalRotation: -0.04363894
-    yLocalRotation: 4.1857446e-15
-    zLocalRotation: 0.0000000104043165
+    xLocalPosition: -1.9323542
+    yLocalPosition: -4.6250753
+    zLocalPosition: 0.23023963
+    xLocalRotation: -0.04773802
+    yLocalRotation: 0.22210866
+    zLocalRotation: 0.95461196
+  - objectName: HandRotate
+    movePosition: 0
+    moveRotation: 1
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 2
+    X_amplitude: 0.3
+    X_phaseOffset: -0.1
+    X_returnValueOffset: 1
+    X_ClampMin: -1
+    X_ClampMax: 2
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 0
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 1
+    Y_ClampMin: -1
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 0
+    Z_amplitude: 0
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 1
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: 1.9323509
+    yLocalPosition: -4.6250763
+    zLocalPosition: 0.23023844
+    xLocalRotation: 0.047737755
+    yLocalRotation: 0.22210845
+    zLocalRotation: 0.9546121
+  - objectName: FootIK_L
+    movePosition: 1
+    moveRotation: 0
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 0
+    y_IsCosineMovement: 1
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 0
+    X_amplitude: 0
+    X_phaseOffset: 0
+    X_returnValueOffset: 0
+    X_ClampMin: -1
+    X_ClampMax: 1
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 2
+    Y_amplitude: 1
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: 0
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 2
+    Z_amplitude: 1
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 0
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: -0.39402604
+    yLocalPosition: -0.81181395
+    zLocalPosition: 1.7822429
+    xLocalRotation: 0.7071069
+    yLocalRotation: -0
+    zLocalRotation: -0.0000000027939675
+  - objectName: FootIK_R
+    movePosition: 1
+    moveRotation: 0
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 0
+    y_IsCosineMovement: 1
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 0
+    X_amplitude: 0
+    X_phaseOffset: 0
+    X_returnValueOffset: 0
+    X_ClampMin: -1
+    X_ClampMax: 1
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 2
+    Y_amplitude: -1
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: 0
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 2
+    Z_amplitude: -1
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 0
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: 0.39402556
+    yLocalPosition: -0.81181335
+    zLocalPosition: 1.7822421
+    xLocalRotation: 0.7071069
+    yLocalRotation: -0.000000011175871
+    zLocalRotation: -0.000000011175871

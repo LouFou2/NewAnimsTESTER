@@ -3,33 +3,33 @@ using UnityEngine;
 
 public class LimbIKSolver : MonoBehaviour
 {
-    public bool isStretchyLimb; // if this is selected, bone will be "stretchy" (tip will tretch to target and relative distances will stretch)
+    [SerializeField] private bool isStretchyLimb; // if this is selected, bone will be "stretchy" (tip will tretch to target and relative distances will stretch)
 
     //== Components of IK limb ==//
 
     // Three "bones" (or bone controllers):
-    public Transform rootBone;
-    public Transform jointBone;
-    public Transform tipBone;
+    [SerializeField] private Transform rootBone;
+    [SerializeField] private Transform jointBone;
+    [SerializeField] private Transform tipBone;
 
     private Quaternion rootBoneRotation; // using these to store intitial rotations
     private Quaternion jointBoneRotation;
 
     // The IK target:
     [Header("Rotate IKTarget Y to position Hint in z.forward direction")]
-    public Transform IKtargetObject; // VERY IMPORTANT : the y rotation of the target will also locate the hint
+    [SerializeField] private Transform IKtargetObject; // VERY IMPORTANT : the y rotation of the target will also locate the hint
 
     private Quaternion IKTargetRotation; // using these to store intitial rotations
 
     // These components are used to clamp joint movement between a "midpoint"and a "hint" object
-    public Transform midPointObject;
-    public Transform hintObject;
+    [SerializeField] private Transform midPointObject;
+    [SerializeField] private Transform hintObject;
 
     private float segment1Length; // neccesarry to clamp positions (if limb is not stretchy)
     private float segment2Length;
 
     // these variables are used to calculate the Hint position
-    private Vector3 midPoint;
+    private Vector3 midPoint; // IMPORTANT: note "mid point" is not actually the mid point. It depends on ratio of segment1:segment2
     private float midPointToHintDistance;
 
     private void Start()
@@ -41,7 +41,7 @@ public class LimbIKSolver : MonoBehaviour
         jointBoneRotation = jointBone.rotation;
         IKTargetRotation = IKtargetObject.rotation;
     }
-    void LateUpdate()
+    void Update()
     {
         // == IK Solving == //
         // Happens in inverse order of bone order, i.e. from tip to root:
@@ -57,7 +57,7 @@ public class LimbIKSolver : MonoBehaviour
         PositionTipBone(tipBone, IKtargetObject, rootBone, segment1Length, segment2Length); // positioning the tipbone requires its own method
 
         // 2. Position the Mid Point (the mid point between the root and tip)
-        midPoint = (rootBone.position + tipBone.position) / 2;
+        midPoint = (rootBone.position + tipBone.position) / 2; // this only works if segments are same length. Needs better calculation:
         midPointObject.position = midPoint;
 
         // 3. Orient the Mid Point
@@ -66,12 +66,11 @@ public class LimbIKSolver : MonoBehaviour
 
         // 4. Position the Hint
         midPointToHintDistance = segment1Length; // the hint will be segment1 distance away from midpoint, at perpendicular angle
-        hintObject.position = midPointObject.position + (midPointToHintDistance * midPointObject.forward); // then place the hint in z negative direction, at distance same as segment1
+        hintObject.position = midPointObject.position + (midPointToHintDistance * midPointObject.forward); // then place the hint in z direction, at distance same as segment1
 
         // 5. Position the Joint Bone
         float distanceFromFirstBoneToMidpoint = Vector3.Distance(rootBone.position, midPoint);
         float normalisedFactor = distanceFromFirstBoneToMidpoint / (segment1Length); // **THINK ABOUT THIS< IS IT CORRECT? (it works though)
-        Debug.Log(normalisedFactor);
         jointBone.position = Vector3.Lerp(hintObject.position, midPoint, normalisedFactor);
 
         // 6. Orient Joint Bone
@@ -102,15 +101,15 @@ public class LimbIKSolver : MonoBehaviour
         Vector3 targetPosition = targetObject.position;
 
         // Calculate the direction from firstBone to targetObject
-        Vector3 toTarget = targetPosition - firstBone.position;
+        Vector3 toTargetDirection = targetPosition - firstBone.position;
 
         float totalLimbLength = segment1Length + segment2Length;
 
         // Clamp the distance if necessary
-        if (toTarget.magnitude > totalLimbLength && !isStretchyLimb) // will only clamp the tip position is limb is not stretchy
+        if (toTargetDirection.magnitude > totalLimbLength && !isStretchyLimb) // will only clamp the tip position is limb is not stretchy
         {
-            toTarget = toTarget.normalized * totalLimbLength;
-            targetPosition = firstBone.position + toTarget;
+            toTargetDirection = toTargetDirection.normalized * totalLimbLength;
+            targetPosition = firstBone.position + toTargetDirection;
         }
 
         // Set the position of the tipBone
