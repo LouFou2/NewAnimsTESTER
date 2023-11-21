@@ -15,7 +15,7 @@ MonoBehaviour:
   updated:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 2
+  moveSpeed: 0.5
   stepDistance: 3
   freezePosition: 1
   moverObjectsParameters:
@@ -86,10 +86,10 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 0
     xLocalPosition: -0.30219072
-    yLocalPosition: -7.72342
-    zLocalPosition: -0.3768173
+    yLocalPosition: -7.7234206
+    zLocalPosition: -0.37681726
     xLocalRotation: -0
-    yLocalRotation: -0
+    yLocalRotation: 2.3283064e-10
     zLocalRotation: 1
   - objectName: LegIKTarget_R
     movePosition: 1
@@ -256,12 +256,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 1.9323509
+    xLocalPosition: 1.9323518
     yLocalPosition: -4.6250763
-    zLocalPosition: 0.23023844
+    zLocalPosition: 0.23023847
     xLocalRotation: 0.99995476
-    yLocalRotation: -0.0042324183
-    zLocalRotation: -0.000036049336
+    yLocalRotation: -0.0042324024
+    zLocalRotation: -0.00003604591
   - objectName: HipPosition
     movePosition: 1
     moveRotation: 0
@@ -665,7 +665,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 2
-    Y_amplitude: -0.05
+    Y_amplitude: -0.1
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: -1
@@ -677,7 +677,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: -0.015
+    Z_amplitude: -0.05
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -1
@@ -1012,12 +1012,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 1.9323509
+    xLocalPosition: 1.9323518
     yLocalPosition: -4.6250763
-    zLocalPosition: 0.23023844
-    xLocalRotation: 0.047737755
-    yLocalRotation: 0.22210845
-    zLocalRotation: 0.9546121
+    zLocalPosition: 0.23023847
+    xLocalRotation: 0.047737766
+    yLocalRotation: 0.22210848
+    zLocalRotation: 0.95461214
   - objectName: FootIK_L
     movePosition: 1
     moveRotation: 0
@@ -1043,7 +1043,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 2
-    Y_amplitude: 1
+    Y_amplitude: 0
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: 0
@@ -1055,7 +1055,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: 1
+    Z_amplitude: 0
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -1
@@ -1066,12 +1066,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -0.39402604
-    yLocalPosition: -0.81181395
-    zLocalPosition: 1.7822429
-    xLocalRotation: 0.7071069
-    yLocalRotation: -0
-    zLocalRotation: -0.0000000027939675
+    xLocalPosition: 0.014446825
+    yLocalPosition: 1.9620509
+    zLocalPosition: -0.37528598
+    xLocalRotation: -0.29900628
+    yLocalRotation: -0.016169174
+    zLocalRotation: -0.10533511
   - objectName: FootIK_R
     movePosition: 1
     moveRotation: 0
@@ -1097,11 +1097,11 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 2
-    Y_amplitude: -1
+    Y_amplitude: 2
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
-    Y_ClampMin: 0
-    Y_ClampMax: 1
+    Y_ClampMin: -1
+    Y_ClampMax: -0.5
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -1109,20 +1109,20 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: -1
+    Z_amplitude: 1
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -1
-    Z_ClampMax: 0
+    Z_ClampMax: 1
     Z_Curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 0.39402556
-    yLocalPosition: -0.81181335
-    zLocalPosition: 1.7822421
-    xLocalRotation: 0.7071069
-    yLocalRotation: -0.000000011175871
-    zLocalRotation: -0.000000011175871
+    xLocalPosition: -0.014447123
+    yLocalPosition: 1.9620488
+    zLocalPosition: -0.37528598
+    xLocalRotation: -0.29900637
+    yLocalRotation: 0.016169086
+    zLocalRotation: 0.10533514
