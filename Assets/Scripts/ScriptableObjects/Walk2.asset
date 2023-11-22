@@ -1030,7 +1030,7 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 0
+    X_frequency: 2
     X_amplitude: 0
     X_phaseOffset: 0
     X_returnValueOffset: 0
@@ -1084,7 +1084,7 @@ MonoBehaviour:
     z_IsSineMovement: 1
     z_IsCosineMovement: 0
     z_IsLerpCurveMovement: 0
-    X_frequency: 0
+    X_frequency: 2
     X_amplitude: 0
     X_phaseOffset: 0
     X_returnValueOffset: 0
@@ -1097,11 +1097,11 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 2
-    Y_amplitude: 2
+    Y_amplitude: 0
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: -1
-    Y_ClampMax: -0.5
+    Y_ClampMax: 0
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -1109,7 +1109,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: 1
+    Z_amplitude: 0
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
     Z_ClampMin: -1
