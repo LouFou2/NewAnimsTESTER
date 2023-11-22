@@ -70,8 +70,9 @@ public class MoverControls2 : MonoBehaviour
     void Update()
     {
         moverTime += Time.deltaTime * moveSpeed;
-        if (moverTime >= Mathf.PI * 2) moverTime = 0f;
-        float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
+        if (moverTime >= Mathf.PI) moverTime = 0f;
+        float lerpTimer = Mathf.InverseLerp(0, Mathf.PI, moverTime);
+        Debug.Log(lerpTimer);
 
         // == Moving the Character (moving the root) == //
         float rootZ_MoveDistance = Time.deltaTime * moveSpeed * stepDistance;
@@ -169,21 +170,24 @@ public class MoverControls2 : MonoBehaviour
             if (x_IsCosine)
                 localX += cosineValueX;
             if (x_IsLerp)
-                localX += Mathf.Lerp(X_ClampMin, X_ClampMax, X_Curve.Evaluate(lerpTimer));
+                //localX += Mathf.Lerp(X_ClampMin, X_ClampMax, X_Curve.Evaluate(lerpTimer));
+                X_Curve.Evaluate(lerpTimer);
 
             if (y_IsSine)
                 localY += sineValueY;
             if (y_IsCosine)
                 localY += cosineValueY;
             if (y_IsLerp)
-                localY += Mathf.Lerp(Y_ClampMin, Y_ClampMax, Y_Curve.Evaluate(lerpTimer));
+                //localY += Mathf.Lerp(Y_ClampMin, Y_ClampMax, Y_Curve.Evaluate(lerpTimer));
+                localY += Y_Curve.Evaluate(lerpTimer);
 
             if (z_IsSine)
                 localZ += sineValueZ;
             if (z_IsCosine)
                 localZ += cosineValueZ;
             if (z_IsLerp)
-                localZ += Mathf.Lerp(Z_ClampMin, Z_ClampMax, Z_Curve.Evaluate(lerpTimer));
+                //localZ += Mathf.Lerp(Z_ClampMin, Z_ClampMax, Z_Curve.Evaluate(lerpTimer));
+                Z_Curve.Evaluate(lerpTimer);
 
             if (movePosition)
                 currentObject.transform.localPosition = new Vector3(localX, localY, localZ);

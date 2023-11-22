@@ -102,14 +102,12 @@ public class LimbIKSolver : MonoBehaviour
 
         // == 4. POSITION THE HINT
 
-        //midPointToHintDistance = segment1Length; // the hint will be segment1 distance away from midpoint, at perpendicular angle
         midPointToHintDistance = stretchedSegment1;
         hintObject.position = midLinePointObject.position + (midPointToHintDistance * midLinePointObject.forward); // then place the hint in z direction, at distance same as segment1
 
         // == 5. POSITION THE JOINT BONE
 
         float midLinePointToTipDistance = Vector3.Distance(midLinePoint, tipBone.position);
-        //float t = Mathf.InverseLerp( segment2Length, 0, midLinePointToTipDistance ); // setting the range t between 0 and 1
         float t = Mathf.InverseLerp( stretchedSegment2, 0, midLinePointToTipDistance );
 
         jointBone.position = Vector3.Lerp(midLinePoint, hintObject.position, t);
