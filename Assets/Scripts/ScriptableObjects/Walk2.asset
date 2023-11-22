@@ -15,11 +15,11 @@ MonoBehaviour:
   updated:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 2.45
+  moveSpeed: 2.3
   stepDistance: 3
   freezePosition: 1
   moverObjectsParameters:
-  - objectName: LegIKTargetL
+  - objectName: StepControl_L
     movePosition: 1
     moveRotation: 0
     x_IsSineMovement: 0
@@ -85,13 +85,13 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
-    xLocalPosition: 0
-    yLocalPosition: -0.63
-    zLocalPosition: 4.01
-    xLocalRotation: 0
-    yLocalRotation: 0
-    zLocalRotation: 0
-  - objectName: LegIKTarget_R
+    xLocalPosition: 0.017778993
+    yLocalPosition: -0.8574481
+    zLocalPosition: -0.19408375
+    xLocalRotation: 0.7035009
+    yLocalRotation: -0.07132078
+    zLocalRotation: 0.07132071
+  - objectName: StepControl_R
     movePosition: 1
     moveRotation: 0
     x_IsSineMovement: 0
@@ -157,12 +157,12 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
-    xLocalPosition: 0
-    yLocalPosition: -0.87000006
-    zLocalPosition: -0.24999999
-    xLocalRotation: 0
-    yLocalRotation: 0
-    zLocalRotation: 0
+    xLocalPosition: -0.017777443
+    yLocalPosition: -0.8574486
+    zLocalPosition: -0.19408321
+    xLocalRotation: 0.7035009
+    yLocalRotation: 0.07132085
+    zLocalRotation: -0.071320646
   - objectName: ArmIKTargetL
     movePosition: 1
     moveRotation: 0
@@ -211,8 +211,8 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -1.9323542
-    yLocalPosition: -4.6250753
+    xLocalPosition: -1.9323556
+    yLocalPosition: -4.625078
     zLocalPosition: 0.23023963
     xLocalRotation: 0.99995476
     yLocalRotation: -0.0042324183
@@ -265,9 +265,9 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 1.9323518
-    yLocalPosition: -4.6250763
-    zLocalPosition: 0.23023847
+    xLocalPosition: 1.9323558
+    yLocalPosition: -4.625078
+    zLocalPosition: 0.23024023
     xLocalRotation: 0.99995476
     yLocalRotation: -0.0042324024
     zLocalRotation: -0.00003604591
@@ -319,12 +319,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -0.00000070741305
-    yLocalPosition: -8.768139
-    zLocalPosition: 0.0000011920929
-    xLocalRotation: 0.10229927
+    xLocalPosition: 0
+    yLocalPosition: 0
+    zLocalPosition: 0
+    xLocalRotation: 0.1022995
     yLocalRotation: -0.00000011411224
-    zLocalRotation: 0.00000003128703
+    zLocalRotation: 0.000000031287016
   - objectName: HipRotation
     movePosition: 0
     moveRotation: 1
@@ -373,12 +373,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -0.00000070741305
-    yLocalPosition: -8.768139
-    zLocalPosition: 0.0000011920929
-    xLocalRotation: 0.10229927
+    xLocalPosition: 0
+    yLocalPosition: 0
+    zLocalPosition: 0
+    xLocalRotation: 0.1022995
     yLocalRotation: -0.00000011411224
-    zLocalRotation: 0.00000003128703
+    zLocalRotation: 0.000000031287016
   - objectName: BellyPosition
     movePosition: 1
     moveRotation: 0
@@ -427,12 +427,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 6.6994023e-13
-    yLocalPosition: 1.6400045
-    zLocalPosition: 0.0000030228068
-    xLocalRotation: -0.03728759
-    yLocalRotation: -0.00000011912639
-    zLocalRotation: 0.000000013335111
+    xLocalPosition: -2.2331342e-13
+    yLocalPosition: 1.6400061
+    zLocalPosition: -0.00000063862115
+    xLocalRotation: -0.037287813
+    yLocalRotation: -0.000000119126376
+    zLocalRotation: 0.0000000133351765
   - objectName: BellyRotation
     movePosition: 0
     moveRotation: 1
@@ -481,12 +481,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 6.6994023e-13
-    yLocalPosition: 1.6400045
-    zLocalPosition: 0.0000030228068
-    xLocalRotation: -0.03728759
-    yLocalRotation: -0.00000011912639
-    zLocalRotation: 0.000000013335111
+    xLocalPosition: -2.2331342e-13
+    yLocalPosition: 1.6400061
+    zLocalPosition: -0.00000063862115
+    xLocalRotation: -0.037287813
+    yLocalRotation: -0.000000119126376
+    zLocalRotation: 0.0000000133351765
   - objectName: TorsoPosition
     movePosition: 1
     moveRotation: 0
@@ -535,10 +535,10 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -2.8066438e-13
-    yLocalPosition: 2.2204158
-    zLocalPosition: -0.0000005066395
-    xLocalRotation: -0.118175
+    xLocalPosition: 2.4513724e-13
+    yLocalPosition: 2.2204144
+    zLocalPosition: 0.0000004917383
+    xLocalRotation: -0.11817501
     yLocalRotation: 0.00000011837399
     zLocalRotation: 0.00000004226266
   - objectName: TorsoRotation
@@ -589,10 +589,10 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -2.8066438e-13
-    yLocalPosition: 2.2204158
-    zLocalPosition: -0.0000005066395
-    xLocalRotation: -0.118175
+    xLocalPosition: 2.4513724e-13
+    yLocalPosition: 2.2204144
+    zLocalPosition: 0.0000004917383
+    xLocalRotation: -0.11817501
     yLocalRotation: 0.00000011837399
     zLocalRotation: 0.00000004226266
   - objectName: ShoulderPosition
@@ -643,12 +643,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -2.2737368e-13
-    yLocalPosition: 3.1512413
-    zLocalPosition: -0.00000029802322
-    xLocalRotation: -0.055895142
-    yLocalRotation: 1.4210855e-14
-    zLocalRotation: 0.000000013326443
+    xLocalPosition: -4.5474735e-13
+    yLocalPosition: 3.1512437
+    zLocalPosition: -0.0000017285347
+    xLocalRotation: -0.05589512
+    yLocalRotation: 7.1054265e-15
+    zLocalRotation: 0.000000013326435
   - objectName: ShoulderRotate
     movePosition: 0
     moveRotation: 1
@@ -697,12 +697,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -2.2737368e-13
-    yLocalPosition: 3.1512413
-    zLocalPosition: -0.00000029802322
-    xLocalRotation: -0.055895142
-    yLocalRotation: 1.4210855e-14
-    zLocalRotation: 0.000000013326443
+    xLocalPosition: -4.5474735e-13
+    yLocalPosition: 3.1512437
+    zLocalPosition: -0.0000017285347
+    xLocalRotation: -0.05589512
+    yLocalRotation: 7.1054265e-15
+    zLocalRotation: 0.000000013326435
   - objectName: NeckPosition
     movePosition: 1
     moveRotation: 0
@@ -751,12 +751,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -5.471179e-13
-    yLocalPosition: 0.9399954
-    zLocalPosition: -0.0000018402934
+    xLocalPosition: 1.10134124e-13
+    yLocalPosition: 0.9399971
+    zLocalPosition: 0.00000027567148
     xLocalRotation: 0.23375133
-    yLocalRotation: -7.775095e-15
-    zLocalRotation: -0.00000005573065
+    yLocalRotation: 1.3404161e-14
+    zLocalRotation: -0.000000055730645
   - objectName: NeckRotation
     movePosition: 0
     moveRotation: 1
@@ -805,12 +805,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -5.471179e-13
-    yLocalPosition: 0.9399954
-    zLocalPosition: -0.0000018402934
+    xLocalPosition: 1.10134124e-13
+    yLocalPosition: 0.9399971
+    zLocalPosition: 0.00000027567148
     xLocalRotation: 0.23375133
-    yLocalRotation: -7.775095e-15
-    zLocalRotation: -0.00000005573065
+    yLocalRotation: 1.3404161e-14
+    zLocalRotation: -0.000000055730645
   - objectName: HeadPosition
     movePosition: 1
     moveRotation: 0
@@ -859,12 +859,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 2.842171e-13
-    yLocalPosition: 1.6319023
-    zLocalPosition: 0.00000047683716
+    xLocalPosition: -1.4210855e-13
+    yLocalPosition: 1.6319009
+    zLocalPosition: -0.0000013113022
     xLocalRotation: -0.04363894
-    yLocalRotation: 4.1857446e-15
-    zLocalRotation: 0.0000000104043165
+    yLocalRotation: -1.5552448e-14
+    zLocalRotation: 0.000000010404324
   - objectName: HeadRotate
     movePosition: 0
     moveRotation: 1
@@ -913,12 +913,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 2.842171e-13
-    yLocalPosition: 1.6319023
-    zLocalPosition: 0.00000047683716
+    xLocalPosition: -1.4210855e-13
+    yLocalPosition: 1.6319009
+    zLocalPosition: -0.0000013113022
     xLocalRotation: -0.04363894
-    yLocalRotation: 4.1857446e-15
-    zLocalRotation: 0.0000000104043165
+    yLocalRotation: -1.5552448e-14
+    zLocalRotation: 0.000000010404324
   - objectName: HandLRotate
     movePosition: 0
     moveRotation: 1
@@ -967,12 +967,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -1.9323542
-    yLocalPosition: -4.6250753
+    xLocalPosition: -1.9323556
+    yLocalPosition: -4.625078
     zLocalPosition: 0.23023963
-    xLocalRotation: -0.047737945
-    yLocalRotation: 0.22210848
-    zLocalRotation: 0.9546121
+    xLocalRotation: -0.04773794
+    yLocalRotation: 0.22210845
+    zLocalRotation: 0.954612
   - objectName: HandRotate
     movePosition: 0
     moveRotation: 1
@@ -1021,9 +1021,9 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: 1.9323518
-    yLocalPosition: -4.6250763
-    zLocalPosition: 0.23023847
-    xLocalRotation: 0.047737494
+    xLocalPosition: 1.9323558
+    yLocalPosition: -4.625078
+    zLocalPosition: 0.23024023
+    xLocalRotation: 0.047737487
     yLocalRotation: 0.22210819
     zLocalRotation: 0.95461214
