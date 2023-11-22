@@ -158,7 +158,6 @@ public class LimbIKSolver : MonoBehaviour
             stretchedSegment2 = (segment2Length / totalLimbLength) * stretchedTotalLimbLength;
         }
         
-
         // Clamp the distance if necessary
         if (stretchedTotalLimbLength > totalLimbLength && !isStretchyLimb) // will only clamp the tip position is limb is not stretchy
         {
