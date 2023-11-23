@@ -70,7 +70,7 @@ public class MoverControls2 : MonoBehaviour
     void Update()
     {
         moverTime += Time.deltaTime * moveSpeed;
-        if (moverTime >= Mathf.PI) moverTime = 0f;
+        if (moverTime >= Mathf.PI * 2) moverTime = 0f;
         float lerpTimer = Mathf.InverseLerp(0, Mathf.PI, moverTime);
         Debug.Log(lerpTimer);
 
@@ -171,7 +171,7 @@ public class MoverControls2 : MonoBehaviour
                 localX += cosineValueX;
             if (x_IsLerp)
                 //localX += Mathf.Lerp(X_ClampMin, X_ClampMax, X_Curve.Evaluate(lerpTimer));
-                X_Curve.Evaluate(lerpTimer);
+                localX += X_Curve.Evaluate(lerpTimer);
 
             if (y_IsSine)
                 localY += sineValueY;
@@ -187,7 +187,7 @@ public class MoverControls2 : MonoBehaviour
                 localZ += cosineValueZ;
             if (z_IsLerp)
                 //localZ += Mathf.Lerp(Z_ClampMin, Z_ClampMax, Z_Curve.Evaluate(lerpTimer));
-                Z_Curve.Evaluate(lerpTimer);
+                localZ += Z_Curve.Evaluate(lerpTimer);
 
             if (movePosition)
                 currentObject.transform.localPosition = new Vector3(localX, localY, localZ);
