@@ -15,7 +15,7 @@ MonoBehaviour:
   updated:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 2.3
+  moveSpeed: 2.4
   stepDistance: 3
   freezePosition: 1
   moverObjectsParameters:
@@ -350,7 +350,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 2
-    Y_amplitude: 0.05
+    Y_amplitude: 0.07
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: -2
@@ -1027,3 +1027,327 @@ MonoBehaviour:
     xLocalRotation: 0.047737487
     yLocalRotation: 0.22210819
     zLocalRotation: 0.95461214
+  - objectName: BallPivot_L
+    movePosition: 0
+    moveRotation: 1
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 2
+    X_amplitude: -0.5
+    X_phaseOffset: 0
+    X_returnValueOffset: 0
+    X_ClampMin: 0.1
+    X_ClampMax: 1
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 0
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: -1
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 0
+    Z_amplitude: 0
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 1
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: -0.000000029802322
+    yLocalPosition: -1.836092
+    zLocalPosition: -0.00000035762798
+    xLocalRotation: 0.17770009
+    yLocalRotation: 0.022081377
+    zLocalRotation: 0.0068982905
+  - objectName: BallPivot_R
+    movePosition: 0
+    moveRotation: 1
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 2
+    X_amplitude: 0.5
+    X_phaseOffset: 0
+    X_returnValueOffset: 0
+    X_ClampMin: 0.1
+    X_ClampMax: 1
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 0
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: -1
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 0
+    Z_amplitude: 0
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 1
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: -0.000000029802319
+    yLocalPosition: -1.8360888
+    zLocalPosition: 0.00000011920925
+    xLocalRotation: 0.17770022
+    yLocalRotation: -0.022081424
+    zLocalRotation: -0.0068983324
+  - objectName: HeelPivot_L
+    movePosition: 0
+    moveRotation: 1
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 0
+    z_IsCosineMovement: 1
+    z_IsLerpCurveMovement: 0
+    X_frequency: 2
+    X_amplitude: -0.2
+    X_phaseOffset: 0
+    X_returnValueOffset: 0.5
+    X_ClampMin: -3
+    X_ClampMax: 0.5
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 0
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: -1
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 2
+    Z_amplitude: 0.1
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: 0
+    Z_ClampMax: 1
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: 0.017778993
+    yLocalPosition: -0.8574481
+    zLocalPosition: -0.19408375
+    xLocalRotation: 0.7035009
+    yLocalRotation: -0.07132078
+    zLocalRotation: 0.07132071
+  - objectName: HeelPivot_R
+    movePosition: 0
+    moveRotation: 1
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 0
+    z_IsCosineMovement: 1
+    z_IsLerpCurveMovement: 0
+    X_frequency: 2
+    X_amplitude: 0.2
+    X_phaseOffset: 0
+    X_returnValueOffset: 0.5
+    X_ClampMin: -3
+    X_ClampMax: 0.5
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 0
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: -1
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 2
+    Z_amplitude: 0.1
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 0
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: -0.017777443
+    yLocalPosition: -0.8574486
+    zLocalPosition: -0.19408321
+    xLocalRotation: 0.7035009
+    yLocalRotation: 0.07132085
+    zLocalRotation: -0.071320646
+  - objectName: ToePivot_L
+    movePosition: 0
+    moveRotation: 1
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 2
+    X_amplitude: 0.2
+    X_phaseOffset: 0.25
+    X_returnValueOffset: 0.065
+    X_ClampMin: 0.065
+    X_ClampMax: 0.25
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 0
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: -1
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 0
+    Z_amplitude: 0
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 1
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: 0.0014333639
+    yLocalPosition: 2.9382503
+    zLocalPosition: -0.14704397
+    xLocalRotation: -0.09386784
+    yLocalRotation: 0.01979047
+    zLocalRotation: 0.002266474
+  - objectName: ToePivot_R
+    movePosition: 0
+    moveRotation: 1
+    x_IsSineMovement: 1
+    x_IsCosineMovement: 0
+    x_IsLerpCurveMovement: 0
+    y_IsSineMovement: 1
+    y_IsCosineMovement: 0
+    y_IsLerpCurveMovement: 0
+    z_IsSineMovement: 1
+    z_IsCosineMovement: 0
+    z_IsLerpCurveMovement: 0
+    X_frequency: 2
+    X_amplitude: 0.2
+    X_phaseOffset: -0.25
+    X_returnValueOffset: 0.065
+    X_ClampMin: 0.065
+    X_ClampMax: 0.2
+    X_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Y_frequency: 0
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: -1
+    Y_ClampMax: 1
+    Y_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Z_frequency: 0
+    Z_amplitude: 0
+    Z_phaseOffset: 0
+    Z_returnValueOffset: 0
+    Z_ClampMin: -1
+    Z_ClampMax: 1
+    Z_Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    xLocalPosition: -0.0014349817
+    yLocalPosition: 2.93825
+    zLocalPosition: -0.14704703
+    xLocalRotation: -0.0938676
+    yLocalRotation: -0.01979034
+    zLocalRotation: -0.002266407
