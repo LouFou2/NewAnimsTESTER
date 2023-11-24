@@ -51,9 +51,9 @@ public class MoveData : ScriptableObject
         [HideInInspector] public float yLocalPosition;
         [HideInInspector] public float zLocalPosition;
 
-        [HideInInspector] public float xLocalRotation;
-        [HideInInspector] public float yLocalRotation;
-        [HideInInspector] public float zLocalRotation;
+        [HideInInspector] public float xLocalAngle;
+        [HideInInspector] public float yLocalAngle;
+        [HideInInspector] public float zLocalAngle;
     }
 
     public float moveSpeed = 1f;

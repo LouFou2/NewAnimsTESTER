@@ -33,9 +33,9 @@ public class MoverControls2 : MonoBehaviour
                 objParams.yLocalPosition = currentObject.transform.localPosition.y;
                 objParams.zLocalPosition = currentObject.transform.localPosition.z;
 
-                objParams.xLocalRotation = currentObject.transform.localRotation.x;
-                objParams.yLocalRotation = currentObject.transform.localRotation.y;
-                objParams.zLocalRotation = currentObject.transform.localRotation.z;
+                objParams.xLocalAngle = currentObject.transform.localEulerAngles.x;
+                objParams.yLocalAngle = currentObject.transform.localEulerAngles.y;
+                objParams.zLocalAngle = currentObject.transform.localEulerAngles.z;
             }
 
             moveSpeed = moveData.moveSpeed;
@@ -71,7 +71,7 @@ public class MoverControls2 : MonoBehaviour
     {
         moverTime += Time.deltaTime * moveSpeed;
         if (moverTime >= Mathf.PI * 2) moverTime = 0f;
-        float lerpTimer = Mathf.InverseLerp(0, Mathf.PI, moverTime);
+        float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
         Debug.Log(lerpTimer);
 
         // == Moving the Character (moving the root) == //
@@ -152,6 +152,10 @@ public class MoverControls2 : MonoBehaviour
             float localY = 0;
             float localZ = 0;
 
+            float initialLocalRotationX = 0;
+            float initialLocalRotationY = 0;
+            float initialLocalRotationZ = 0;
+
             if (movePosition)
             {
                 localX = objParams.xLocalPosition;
@@ -160,9 +164,10 @@ public class MoverControls2 : MonoBehaviour
             }
             if (moveRotation)
             {
-                localX = (objParams.xLocalRotation) / 180;
-                localY = (objParams.yLocalRotation) / 180;
-                localZ = (objParams.zLocalRotation) / 180;
+
+                initialLocalRotationX = (objParams.xLocalAngle);
+                initialLocalRotationY = (objParams.yLocalAngle);
+                initialLocalRotationZ = (objParams.zLocalAngle);
             }
 
             if (x_IsSine)
@@ -170,7 +175,6 @@ public class MoverControls2 : MonoBehaviour
             if (x_IsCosine)
                 localX += cosineValueX;
             if (x_IsLerp)
-                //localX += Mathf.Lerp(X_ClampMin, X_ClampMax, X_Curve.Evaluate(lerpTimer));
                 localX += X_Curve.Evaluate(lerpTimer);
 
             if (y_IsSine)
@@ -178,7 +182,6 @@ public class MoverControls2 : MonoBehaviour
             if (y_IsCosine)
                 localY += cosineValueY;
             if (y_IsLerp)
-                //localY += Mathf.Lerp(Y_ClampMin, Y_ClampMax, Y_Curve.Evaluate(lerpTimer));
                 localY += Y_Curve.Evaluate(lerpTimer);
 
             if (z_IsSine)
@@ -186,7 +189,6 @@ public class MoverControls2 : MonoBehaviour
             if (z_IsCosine)
                 localZ += cosineValueZ;
             if (z_IsLerp)
-                //localZ += Mathf.Lerp(Z_ClampMin, Z_ClampMax, Z_Curve.Evaluate(lerpTimer));
                 localZ += Z_Curve.Evaluate(lerpTimer);
 
             if (movePosition)
@@ -194,10 +196,28 @@ public class MoverControls2 : MonoBehaviour
 
             if (moveRotation)
             {
-                localX *= 180;
-                localY *= 180;
-                localZ *= 180;
-                currentObject.transform.localRotation = Quaternion.Euler(localX, localY, localZ);
+                float minXAngle = initialLocalRotationX - X_amplitude + X_return_Offset;
+                float maxXAngle = initialLocalRotationX + X_amplitude + X_return_Offset;
+                float minYAngle = initialLocalRotationY - Y_amplitude + Y_return_Offset;
+                float maxYAngle = initialLocalRotationY + Y_amplitude + Y_return_Offset;
+                float minZAngle = initialLocalRotationZ - Z_amplitude + Z_return_Offset;
+                float maxZAngle = initialLocalRotationZ + Z_amplitude + Z_return_Offset;
+
+                //Quaternion minOrientation = Quaternion.Euler(minXAngle, minYAngle, minZAngle); // * cant wrap my head around how to do this..
+                //Quaternion maxOrientation = Quaternion.Euler(maxXAngle, maxYAngle, maxZAngle);
+
+                float xRotationNormalised = Mathf.InverseLerp(-X_amplitude + X_return_Offset, X_amplitude + X_return_Offset, localX);
+                float yRotationNormalised = Mathf.InverseLerp(-Y_amplitude + Y_return_Offset, Y_amplitude + Y_return_Offset, localY);
+                float zRotationNormalised = Mathf.InverseLerp(-Z_amplitude + Z_return_Offset, Z_amplitude + Z_return_Offset, localZ);
+
+                float xAngle = Mathf.Lerp(minXAngle, maxXAngle, xRotationNormalised);
+                float yAngle = Mathf.Lerp(minYAngle, maxYAngle, yRotationNormalised);
+                float zAngle = Mathf.Lerp(minZAngle, maxZAngle, zRotationNormalised);
+
+                currentObject.transform.localRotation = Quaternion.Euler(xAngle, yAngle, zAngle);
+
+                //currentObject.transform.localRotation = Quaternion.Slerp(minOrientation, maxOrientation, lerpTimer); // * ..with this
+                // ** (lerpTimer is no good, because I want the sine/cosine/lerp values)
             }
         }
 
