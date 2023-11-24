@@ -544,6 +544,8 @@ MonoBehaviour:
   freezeRootPosition: 0
   stepControllerL: {fileID: 945907009}
   stepControllerR: {fileID: 1589981862}
+  armControllerL: {fileID: 648160462}
+  armControllerR: {fileID: 729625480}
   moverObjects:
   - {fileID: 945907009}
   - {fileID: 1589981862}
@@ -1085,12 +1087,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.021951722, y: 0.9434018, z: 0.06377561, w: -0.32472116}
-  m_LocalPosition: {x: 1.4885721, y: 0.55639267, z: 1.9442844}
-  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_LocalPosition: {x: 14.885721, y: 5.5639267, z: 19.442844}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1551835679}
-  m_RootOrder: 2
+  m_Father: {fileID: 771621371}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -137.26, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -3157,6 +3159,7 @@ Transform:
   - {fileID: 74247862}
   - {fileID: 271864283}
   - {fileID: 1286629977}
+  - {fileID: 330585546}
   m_Father: {fileID: 1551835679}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6184,7 +6187,6 @@ Transform:
   m_Children:
   - {fileID: 131831130}
   - {fileID: 771621371}
-  - {fileID: 330585546}
   - {fileID: 1564292685}
   m_Father: {fileID: 1063194369}
   m_RootOrder: 0
@@ -6234,7 +6236,7 @@ Transform:
   - {fileID: 1749972683}
   - {fileID: 1239012156}
   m_Father: {fileID: 1551835679}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1570292814 stripped
 Transform:

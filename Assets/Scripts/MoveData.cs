@@ -12,16 +12,15 @@ public class MoveData : ScriptableObject
 
         public bool movePosition = false;
         public bool moveRotation = false;
+        public bool isTransitioningPosition = false;
+        public bool isTransitioningRotation = false;
 
-        public bool x_IsSineMovement = false;
-        public bool x_IsCosineMovement = false;
-        public bool x_IsLerpCurveMovement = false;
-        public bool y_IsSineMovement = false;
-        public bool y_IsCosineMovement = false;
-        public bool y_IsLerpCurveMovement = false;
-        public bool z_IsSineMovement = false;
-        public bool z_IsCosineMovement = false;
-        public bool z_IsLerpCurveMovement = false;
+        public bool x_Sine = false;
+        public bool x_LerpCurve = false;
+        public bool y_Sine = false;
+        public bool y_LerpCurve = false;
+        public bool z_Sine = false;
+        public bool z_LerpCurve = false;
 
         public float X_frequency; // X here refers to local x position of object
         public float X_amplitude;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Collections;
 
 public class MoverControls2 : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class MoverControls2 : MonoBehaviour
     // == Have to add the objects that control the legs == //
     [SerializeField] private GameObject stepControllerL;
     [SerializeField] private GameObject stepControllerR;
+    // == Have to add the objects that control the armss == //
+    [SerializeField] private GameObject armControllerL;
+    [SerializeField] private GameObject armControllerR;
 
     [Header("Put Mover Objects in same order as in MoveData Scriptable Object")]
     [SerializeField] private GameObject[] moverObjects; // IMPORTANT: this array HAS to have same objects as scriptable object, in SAME ORDER
@@ -87,16 +91,14 @@ public class MoverControls2 : MonoBehaviour
 
             bool movePosition = objParams.movePosition;
             bool moveRotation = objParams.moveRotation;
-
-            bool x_IsSine = objParams.x_IsSineMovement;
-            bool x_IsCosine = objParams.x_IsCosineMovement;
-            bool x_IsLerp = objParams.x_IsLerpCurveMovement;
-            bool y_IsSine = objParams.y_IsSineMovement;
-            bool y_IsCosine = objParams.y_IsCosineMovement;
-            bool y_IsLerp = objParams.y_IsLerpCurveMovement;
-            bool z_IsSine = objParams.z_IsSineMovement;
-            bool z_IsCosine = objParams.z_IsCosineMovement;
-            bool z_IsLerp = objParams.z_IsLerpCurveMovement;
+            bool isTransitioningPosition = objParams.isTransitioningPosition;
+            bool isTransitioningRotation = objParams.isTransitioningRotation;
+            bool x_IsSine = objParams.x_Sine;
+            bool x_IsLerp = objParams.x_LerpCurve;
+            bool y_IsSine = objParams.y_Sine;
+            bool y_IsLerp = objParams.y_LerpCurve;
+            bool z_IsSine = objParams.z_Sine;
+            bool z_IsLerp = objParams.z_LerpCurve;
 
             float X_frequency = objParams.X_frequency;
             float X_phaseOffset = Mathf.PI * objParams.X_phaseOffset; // using PI, so if offset is 1, the movement is exactly inverse
@@ -135,19 +137,6 @@ public class MoverControls2 : MonoBehaviour
             if (sineValueZ < Z_ClampMin) sineValueZ = Z_ClampMin;
             if (sineValueZ > Z_ClampMax) sineValueZ = Z_ClampMax;
 
-            float cosineValueX = CosineValue(moverTime, X_frequency, X_amplitude, X_phaseOffset, X_return_Offset);
-            float cosineValueY = CosineValue(moverTime, Y_frequency, Y_amplitude, Y_phaseOffset, Y_return_Offset);
-            float cosineValueZ = CosineValue(moverTime, Z_frequency, Z_amplitude, Z_phaseOffset, Z_return_Offset);
-
-            if (cosineValueX < X_ClampMin) cosineValueX = X_ClampMin;
-            if (cosineValueX > X_ClampMax) cosineValueX = X_ClampMax;
-
-            if (cosineValueY < Y_ClampMin) cosineValueY = Y_ClampMin;
-            if (cosineValueY > Y_ClampMax) cosineValueY = Y_ClampMax;
-
-            if (cosineValueZ < Z_ClampMin) cosineValueZ = Z_ClampMin;
-            if (cosineValueZ > Z_ClampMax) cosineValueZ = Z_ClampMax;
-
             float localX = 0;
             float localY = 0;
             float localZ = 0;
@@ -158,44 +147,40 @@ public class MoverControls2 : MonoBehaviour
 
             if (movePosition)
             {
-                localX = objParams.xLocalPosition;
-                localY = objParams.yLocalPosition;
-                localZ = objParams.zLocalPosition;
+                localX = objParams.xLocalPosition; // if movement, then we add the initial position of the object
+                localY = objParams.yLocalPosition; // otherwise it will just use the returned value for the rotations
+                localZ = objParams.zLocalPosition; // * see below...
             }
             if (moveRotation)
             {
-
                 initialLocalRotationX = (objParams.xLocalAngle);
                 initialLocalRotationY = (objParams.yLocalAngle);
                 initialLocalRotationZ = (objParams.zLocalAngle);
             }
 
             if (x_IsSine)
-                localX += sineValueX;
-            if (x_IsCosine)
-                localX += cosineValueX;
+                localX += sineValueX; // ...* see here, this is the clean returned value (but will have localPosition added if we are moving position)
             if (x_IsLerp)
                 localX += X_Curve.Evaluate(lerpTimer);
 
             if (y_IsSine)
                 localY += sineValueY;
-            if (y_IsCosine)
-                localY += cosineValueY;
             if (y_IsLerp)
                 localY += Y_Curve.Evaluate(lerpTimer);
 
             if (z_IsSine)
                 localZ += sineValueZ;
-            if (z_IsCosine)
-                localZ += cosineValueZ;
             if (z_IsLerp)
                 localZ += Z_Curve.Evaluate(lerpTimer);
 
             if (movePosition)
+                // Applying values to new position
                 currentObject.transform.localPosition = new Vector3(localX, localY, localZ);
+                
 
             if (moveRotation)
             {
+                // Actual min-max angles, considering initial orientations of objects as well as the return offset values
                 float minXAngle = initialLocalRotationX - X_amplitude + X_return_Offset;
                 float maxXAngle = initialLocalRotationX + X_amplitude + X_return_Offset;
                 float minYAngle = initialLocalRotationY - Y_amplitude + Y_return_Offset;
@@ -203,21 +188,18 @@ public class MoverControls2 : MonoBehaviour
                 float minZAngle = initialLocalRotationZ - Z_amplitude + Z_return_Offset;
                 float maxZAngle = initialLocalRotationZ + Z_amplitude + Z_return_Offset;
 
-                //Quaternion minOrientation = Quaternion.Euler(minXAngle, minYAngle, minZAngle); // * cant wrap my head around how to do this..
-                //Quaternion maxOrientation = Quaternion.Euler(maxXAngle, maxYAngle, maxZAngle);
-
+                // Using values being returned from curve calculations and normalising it (to use in Lerp)
                 float xRotationNormalised = Mathf.InverseLerp(-X_amplitude + X_return_Offset, X_amplitude + X_return_Offset, localX);
                 float yRotationNormalised = Mathf.InverseLerp(-Y_amplitude + Y_return_Offset, Y_amplitude + Y_return_Offset, localY);
                 float zRotationNormalised = Mathf.InverseLerp(-Z_amplitude + Z_return_Offset, Z_amplitude + Z_return_Offset, localZ);
 
+                // Lerping between min-max angles, using above normalised return values
                 float xAngle = Mathf.Lerp(minXAngle, maxXAngle, xRotationNormalised);
                 float yAngle = Mathf.Lerp(minYAngle, maxYAngle, yRotationNormalised);
                 float zAngle = Mathf.Lerp(minZAngle, maxZAngle, zRotationNormalised);
 
+                // Applying angles to local rotation of object
                 currentObject.transform.localRotation = Quaternion.Euler(xAngle, yAngle, zAngle);
-
-                //currentObject.transform.localRotation = Quaternion.Slerp(minOrientation, maxOrientation, lerpTimer); // * ..with this
-                // ** (lerpTimer is no good, because I want the sine/cosine/lerp values)
             }
         }
 
@@ -228,20 +210,24 @@ public class MoverControls2 : MonoBehaviour
         float stepperR_LocalZ_Position = stepperR_LocalPosition.z;
         stepperL_LocalZ_Position *= stepDistance;
         stepperR_LocalZ_Position *= stepDistance;
-        stepperL_LocalZ_Position += stepDistance / 2; // have to shift position forward otherwise root is moving along with front foot
-        stepperR_LocalZ_Position += stepDistance / 2;
         stepControllerL.transform.localPosition = new Vector3(stepperL_LocalPosition.x, stepperL_LocalPosition.y, stepperL_LocalZ_Position);
         stepControllerR.transform.localPosition = new Vector3(stepperR_LocalPosition.x, stepperR_LocalPosition.y, stepperR_LocalZ_Position);
+        // == Multiply the arm swing movement by step distance == //
+        Vector3 armswingL_LocalPosition = armControllerL.transform.localPosition;
+        Vector3 armswingR_LocalPosition = armControllerR.transform.localPosition;
+        float armswingL_LocalZ_Position = armswingL_LocalPosition.z;
+        float armswingR_LocalZ_Position = armswingR_LocalPosition.z;
+        armswingL_LocalZ_Position *= stepDistance;
+        armswingR_LocalZ_Position *= stepDistance;
+        armControllerL.transform.localPosition = new Vector3(armswingL_LocalPosition.x, armswingL_LocalPosition.y, armswingL_LocalZ_Position);
+        armControllerR.transform.localPosition = new Vector3(armswingR_LocalPosition.x, armswingR_LocalPosition.y, armswingR_LocalZ_Position);
     }
 
     float SineValue(float X, float frequency, float amplitude, float phaseOffset, float Y_Offset) // X and Y represents values on sine graph, not to be confused with object space
     {
         return Mathf.Sin((X + phaseOffset) * frequency) * amplitude + Y_Offset;
     }
-    float CosineValue(float X, float frequency, float amplitude, float phaseOffset, float Y_Offset) // X and Y represents values on sine graph, not to be confused with object space
-    {
-        return Mathf.Cos((X + phaseOffset) * frequency) * amplitude + Y_Offset;
-    }
+
 }
 
 
