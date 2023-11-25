@@ -12,8 +12,6 @@ public class MoveData : ScriptableObject
 
         public bool movePosition = false;
         public bool moveRotation = false;
-        public bool isTransitioningPosition = false;
-        public bool isTransitioningRotation = false;
 
         public bool x_Sine = false;
         public bool x_LerpCurve = false;
