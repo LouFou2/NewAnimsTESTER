@@ -541,7 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveData: {fileID: 11400000, guid: 48cc166507ca8a34691222fb0d66273e, type: 2}
   rootObject: {fileID: 771621370}
-  freezeRootPosition: 0
+  freezeRootPosition: 1
   stepControllerL: {fileID: 945907009}
   stepControllerR: {fileID: 1589981862}
   armControllerL: {fileID: 648160462}

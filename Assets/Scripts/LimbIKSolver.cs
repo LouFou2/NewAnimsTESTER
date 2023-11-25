@@ -15,10 +15,8 @@ public class LimbIKSolver : MonoBehaviour
     [SerializeField] private Transform tipBone;
 
     private Quaternion rootBoneRotation; // using these to store intitial rotations
-    private float rootForwardCorrector; // a -1 or 1 value to make bone z.forward/backward orient towards hint, depending on bone roll
 
     private Quaternion jointBoneRotation;
-    private float jointForwardCorrector;
 
     // The IK target:
     [Header("Rotate IKTarget Y to position Hint in z.forward direction")]
@@ -52,15 +50,6 @@ public class LimbIKSolver : MonoBehaviour
         // Target Object controls and stabilises orientation of bones
         // Also positions the hint (towards the z.forward direction of target)
         IKTargetRotation = IKtargetObject.rotation; 
-
-        rootBoneRotation = rootBone.rotation;
-        float rootForward_vs_TargetForward = Vector3.Dot(IKtargetObject.forward, rootBone.forward); // foolproofing for bone roll direction
-        rootForwardCorrector = (rootForward_vs_TargetForward > 0) ? 1 : -1; // ***NOT WORKING, MAYBE I DONT UNDERSTAND ROTATION PROPERLY
-        
-        jointBoneRotation = jointBone.rotation;
-        float jointForward_vs_TargetForward = Vector3.Dot(IKtargetObject.forward, jointBone.forward); // foolproofing for bone roll direction
-        jointForwardCorrector = (jointForward_vs_TargetForward > 0) ? 1 : -1; // ***NOT WORKING, MAYBE I DONT UNDERSTAND ROTATION PROPERLY
-
     }
     void Update()
     {
