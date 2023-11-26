@@ -42,9 +42,9 @@ public class MoverControls2 : MonoBehaviour
 
                 // == The Orientation == //
                 Quaternion objectLocalOrientation = currentObject.transform.localRotation;
-                objParams.xLocalAngle = objectLocalOrientation.x; // Also passing initial angles to Move Data
-                objParams.yLocalAngle = objectLocalOrientation.y;
-                objParams.zLocalAngle = objectLocalOrientation.z;
+                objParams.xLocalAngle = currentObject.transform.localEulerAngles.x; // Also passing initial angles to Move Data
+                objParams.yLocalAngle = currentObject.transform.localEulerAngles.y;
+                objParams.zLocalAngle = currentObject.transform.localEulerAngles.z;
             }
 
             moveSpeed = moveData.moveSpeed;
