@@ -22,8 +22,6 @@ MonoBehaviour:
   - objectName: StepControl_L
     movePosition: 1
     moveRotation: 0
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 1
@@ -32,7 +30,7 @@ MonoBehaviour:
     z_LerpCurve: 0
     X_frequency: 2
     X_amplitude: -1
-    X_phaseOffset: 0
+    X_phaseOffset: 0.25
     X_returnValueOffset: 1
     X_ClampMin: -1
     X_ClampMax: 1
@@ -87,14 +85,12 @@ MonoBehaviour:
     xLocalPosition: 0.017778993
     yLocalPosition: -0.8574481
     zLocalPosition: -0.19408375
-    xLocalAngle: 90
-    yLocalAngle: 348.42227
-    zLocalAngle: 0
+    xLocalAngle: 0.7035009
+    yLocalAngle: -0.07132078
+    zLocalAngle: 0.07132071
   - objectName: StepControl_R
     movePosition: 1
     moveRotation: 0
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 1
@@ -103,7 +99,7 @@ MonoBehaviour:
     z_LerpCurve: 0
     X_frequency: 2
     X_amplitude: -1
-    X_phaseOffset: 0
+    X_phaseOffset: 0.25
     X_returnValueOffset: -1
     X_ClampMin: -1
     X_ClampMax: 1
@@ -158,14 +154,12 @@ MonoBehaviour:
     xLocalPosition: -0.017777443
     yLocalPosition: -0.8574486
     zLocalPosition: -0.19408321
-    xLocalAngle: 90
-    yLocalAngle: 11.577727
-    zLocalAngle: 0
+    xLocalAngle: 0.7035009
+    yLocalAngle: 0.07132085
+    zLocalAngle: -0.071320646
   - objectName: ArmIKTargetL
     movePosition: 1
     moveRotation: 0
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 1
@@ -174,22 +168,22 @@ MonoBehaviour:
     z_LerpCurve: 0
     X_frequency: 4
     X_amplitude: -0.5
-    X_phaseOffset: 0
-    X_returnValueOffset: 1
-    X_ClampMin: -4
-    X_ClampMax: 3
+    X_phaseOffset: 0.6
+    X_returnValueOffset: 0.6
+    X_ClampMin: -5
+    X_ClampMax: 6
     X_Curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 4
-    Y_amplitude: -0.5
-    Y_phaseOffset: 0.1
-    Y_returnValueOffset: 0.5
-    Y_ClampMin: -2
-    Y_ClampMax: 6
+    Y_frequency: 2
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: 0
+    Y_ClampMax: 0
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -200,8 +194,8 @@ MonoBehaviour:
     Z_amplitude: -1
     Z_phaseOffset: 0
     Z_returnValueOffset: -0.2
-    Z_ClampMin: -7
-    Z_ClampMax: 7
+    Z_ClampMin: -5
+    Z_ClampMax: 5
     Z_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -211,14 +205,12 @@ MonoBehaviour:
     xLocalPosition: -1.9323556
     yLocalPosition: -4.625078
     zLocalPosition: 0.23023963
-    xLocalAngle: 359.024
-    yLocalAngle: 180
-    zLocalAngle: 180.48502
+    xLocalAngle: 0.99995476
+    yLocalAngle: -0.0042324183
+    zLocalAngle: -0.000036049336
   - objectName: ArmIKTargetR
     movePosition: 1
     moveRotation: 0
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 1
@@ -227,22 +219,22 @@ MonoBehaviour:
     z_LerpCurve: 0
     X_frequency: 4
     X_amplitude: 0.5
-    X_phaseOffset: 0
-    X_returnValueOffset: -1
-    X_ClampMin: -2
-    X_ClampMax: 1
+    X_phaseOffset: 0.6
+    X_returnValueOffset: -0.6
+    X_ClampMin: -5
+    X_ClampMax: 5
     X_Curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: -4
-    Y_amplitude: 0.5
-    Y_phaseOffset: 0.1
-    Y_returnValueOffset: 0.5
-    Y_ClampMin: -2
-    Y_ClampMax: 6
+    Y_frequency: 2
+    Y_amplitude: 0
+    Y_phaseOffset: 0
+    Y_returnValueOffset: 0
+    Y_ClampMin: 0
+    Y_ClampMax: 0
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -252,9 +244,9 @@ MonoBehaviour:
     Z_frequency: 2
     Z_amplitude: 1
     Z_phaseOffset: 0
-    Z_returnValueOffset: -0.3
-    Z_ClampMin: -7
-    Z_ClampMax: 7
+    Z_returnValueOffset: -0.2
+    Z_ClampMin: -5
+    Z_ClampMax: 5
     Z_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -264,14 +256,12 @@ MonoBehaviour:
     xLocalPosition: 1.9323558
     yLocalPosition: -4.625078
     zLocalPosition: 0.23024023
-    xLocalAngle: 359.024
-    yLocalAngle: 180
-    zLocalAngle: 180.48502
+    xLocalAngle: 0.99995476
+    yLocalAngle: -0.0042324024
+    zLocalAngle: -0.00003604591
   - objectName: HipPosition
     movePosition: 1
     moveRotation: 0
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 1
@@ -317,14 +307,12 @@ MonoBehaviour:
     xLocalPosition: 0
     yLocalPosition: 0
     zLocalPosition: 0
-    xLocalAngle: 11.743203
-    yLocalAngle: -0.000012911165
-    zLocalAngle: 0.0000022763647
+    xLocalAngle: 0.1022995
+    yLocalAngle: -0.00000011411224
+    zLocalAngle: 0.000000031287016
   - objectName: HipRotation
     movePosition: 0
     moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 1
@@ -370,14 +358,12 @@ MonoBehaviour:
     xLocalPosition: 0
     yLocalPosition: 0
     zLocalPosition: 0
-    xLocalAngle: 11.743203
-    yLocalAngle: -0.000012911165
-    zLocalAngle: 0.0000022763647
+    xLocalAngle: 0.1022995
+    yLocalAngle: -0.00000011411224
+    zLocalAngle: 0.000000031287016
   - objectName: BellyRotation
     movePosition: 0
     moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -423,14 +409,12 @@ MonoBehaviour:
     xLocalPosition: -2.2331342e-13
     yLocalPosition: 1.6400061
     zLocalPosition: -0.00000063862115
-    xLocalAngle: 355.72614
-    yLocalAngle: -0.000013736562
-    zLocalAngle: 0.0000020417249
+    xLocalAngle: -0.037287813
+    yLocalAngle: -0.000000119126376
+    zLocalAngle: 0.0000000133351765
   - objectName: TorsoRotation
     movePosition: 0
     moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -476,14 +460,12 @@ MonoBehaviour:
     xLocalPosition: 2.4513724e-13
     yLocalPosition: 2.2204144
     zLocalPosition: 0.0000004917383
-    xLocalAngle: 346.42642
-    yLocalAngle: 0.000013267874
-    zLocalAngle: 0.0000032981231
+    xLocalAngle: -0.11817501
+    yLocalAngle: 0.00000011837399
+    zLocalAngle: 0.00000004226266
   - objectName: ShoulderRotate
     movePosition: 0
     moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -529,14 +511,12 @@ MonoBehaviour:
     xLocalPosition: -4.5474735e-13
     yLocalPosition: 3.1512437
     zLocalPosition: -0.0000017285347
-    xLocalAngle: 353.59155
-    yLocalAngle: -0.000000085893156
-    zLocalAngle: 0.0000015342968
+    xLocalAngle: -0.05589512
+    yLocalAngle: 7.1054265e-15
+    zLocalAngle: 0.000000013326435
   - objectName: NeckRotation
     movePosition: 0
     moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -582,14 +562,12 @@ MonoBehaviour:
     xLocalPosition: 1.10134124e-13
     yLocalPosition: 0.9399971
     zLocalPosition: 0.00000027567148
-    xLocalAngle: 27.03606
-    yLocalAngle: -0.0000016759411
-    zLocalAngle: -0.00000697114
+    xLocalAngle: 0.23375133
+    yLocalAngle: 1.3404161e-14
+    zLocalAngle: -0.000000055730645
   - objectName: HeadRotate
     movePosition: 0
     moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -635,14 +613,12 @@ MonoBehaviour:
     xLocalPosition: -1.4210855e-13
     yLocalPosition: 1.6319009
     zLocalPosition: -0.0000013113022
-    xLocalAngle: 354.99774
-    yLocalAngle: -0.000000052229126
-    zLocalAngle: 0.0000011956658
+    xLocalAngle: -0.04363894
+    yLocalAngle: -1.5552448e-14
+    zLocalAngle: 0.000000010404324
   - objectName: HandL_Rotate
     movePosition: 0
-    moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
+    moveRotation: 0
     x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 1
@@ -688,14 +664,12 @@ MonoBehaviour:
     xLocalPosition: -1.9323556
     yLocalPosition: -4.625078
     zLocalPosition: 0.23023963
-    xLocalAngle: 333.73996
-    yLocalAngle: 359.64383
-    zLocalAngle: 157.26665
+    xLocalAngle: -0.04773794
+    yLocalAngle: 0.22210845
+    zLocalAngle: 0.954612
   - objectName: HandR_Rotate
     movePosition: 0
-    moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
+    moveRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -741,14 +715,12 @@ MonoBehaviour:
     xLocalPosition: 1.9323558
     yLocalPosition: -4.625078
     zLocalPosition: 0.23024023
-    xLocalAngle: 333.74
-    yLocalAngle: 0.35611945
-    zLocalAngle: 202.73335
+    xLocalAngle: 0.047737487
+    yLocalAngle: 0.22210819
+    zLocalAngle: 0.95461214
   - objectName: BallPivot_L
     movePosition: 0
-    moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
+    moveRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -794,14 +766,12 @@ MonoBehaviour:
     xLocalPosition: -0.000000029802322
     yLocalPosition: -1.836092
     zLocalPosition: -0.00000035762798
-    xLocalAngle: 20.447111
-    yLocalAngle: 2.8078084
-    zLocalAngle: 1.3099734
+    xLocalAngle: 0.17770009
+    yLocalAngle: 0.022081377
+    zLocalAngle: 0.0068982905
   - objectName: BallPivot_R
     movePosition: 0
-    moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
+    moveRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -847,26 +817,24 @@ MonoBehaviour:
     xLocalPosition: -0.000000029802319
     yLocalPosition: -1.8360888
     zLocalPosition: 0.00000011920925
-    xLocalAngle: 20.447126
-    yLocalAngle: 357.1922
-    zLocalAngle: 358.69003
+    xLocalAngle: 0.17770022
+    yLocalAngle: -0.022081424
+    zLocalAngle: -0.0068983324
   - objectName: HeelPivot_L
     movePosition: 0
-    moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
-    x_Sine: 0
+    moveRotation: 0
+    x_Sine: 1
     x_LerpCurve: 0
-    y_Sine: 0
+    y_Sine: 1
     y_LerpCurve: 0
-    z_Sine: 0
+    z_Sine: 1
     z_LerpCurve: 0
     X_frequency: 2
     X_amplitude: 0
     X_phaseOffset: 0
     X_returnValueOffset: 0
-    X_ClampMin: 0
-    X_ClampMax: 0
+    X_ClampMin: -90
+    X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
       m_Curve:
@@ -922,8 +890,8 @@ MonoBehaviour:
     Y_amplitude: 0
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
-    Y_ClampMin: -1
-    Y_ClampMax: 1
+    Y_ClampMin: -90
+    Y_ClampMax: 90
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -934,8 +902,8 @@ MonoBehaviour:
     Z_amplitude: 0
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
-    Z_ClampMin: 0
-    Z_ClampMax: 1
+    Z_ClampMin: -90
+    Z_ClampMax: 90
     Z_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -945,26 +913,24 @@ MonoBehaviour:
     xLocalPosition: 0.017778993
     yLocalPosition: -0.8574481
     zLocalPosition: -0.19408375
-    xLocalAngle: 90
-    yLocalAngle: 348.42227
-    zLocalAngle: 0
+    xLocalAngle: 0.7035009
+    yLocalAngle: -0.07132078
+    zLocalAngle: 0.07132071
   - objectName: HeelPivot_R
     movePosition: 0
-    moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
-    x_Sine: 0
+    moveRotation: 0
+    x_Sine: 1
     x_LerpCurve: 0
-    y_Sine: 0
+    y_Sine: 1
     y_LerpCurve: 0
-    z_Sine: 0
+    z_Sine: 1
     z_LerpCurve: 0
     X_frequency: 2
     X_amplitude: 0
     X_phaseOffset: 0
     X_returnValueOffset: 0
-    X_ClampMin: -3
-    X_ClampMax: 0.5
+    X_ClampMin: -90
+    X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
       m_Curve:
@@ -1016,12 +982,12 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
-    Y_frequency: 0
+    Y_frequency: 2
     Y_amplitude: 0
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
-    Y_ClampMin: -1
-    Y_ClampMax: 1
+    Y_ClampMin: -90
+    Y_ClampMax: 90
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -1032,8 +998,8 @@ MonoBehaviour:
     Z_amplitude: 0
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
-    Z_ClampMin: -1
-    Z_ClampMax: 0
+    Z_ClampMin: -90
+    Z_ClampMax: 90
     Z_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -1043,14 +1009,12 @@ MonoBehaviour:
     xLocalPosition: -0.017777443
     yLocalPosition: -0.8574486
     zLocalPosition: -0.19408321
-    xLocalAngle: 90
-    yLocalAngle: 11.577727
-    zLocalAngle: 0
+    xLocalAngle: 0.7035009
+    yLocalAngle: 0.07132085
+    zLocalAngle: -0.071320646
   - objectName: ToePivot_L
     movePosition: 0
-    moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
+    moveRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -1096,14 +1060,12 @@ MonoBehaviour:
     xLocalPosition: 0.0014333639
     yLocalPosition: 2.9382503
     zLocalPosition: -0.14704397
-    xLocalAngle: 10.764908
-    yLocalAngle: 357.67676
-    zLocalAngle: 359.52014
+    xLocalAngle: -0.09386784
+    yLocalAngle: 0.01979047
+    zLocalAngle: 0.002266474
   - objectName: ToePivot_R
     movePosition: 0
-    moveRotation: 1
-    isTransitioningPosition: 0
-    isTransitioningRotation: 0
+    moveRotation: 0
     x_Sine: 0
     x_LerpCurve: 0
     y_Sine: 0
@@ -1149,6 +1111,6 @@ MonoBehaviour:
     xLocalPosition: -0.0014349817
     yLocalPosition: 2.93825
     zLocalPosition: -0.14704703
-    xLocalAngle: 10.764879
-    yLocalAngle: 2.323229
-    zLocalAngle: 0.47983584
+    xLocalAngle: -0.0938676
+    yLocalAngle: -0.01979034
+    zLocalAngle: -0.002266407

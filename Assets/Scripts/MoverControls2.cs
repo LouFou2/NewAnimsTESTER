@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using System.Collections;
 using static UnityEngine.Rendering.DebugUI;
+using System.Collections.Generic;
 
 public class MoverControls2 : MonoBehaviour
 {
@@ -19,128 +20,32 @@ public class MoverControls2 : MonoBehaviour
 
     [Header("Put Mover Objects in same order as in MoveData Scriptable Object")]
     [SerializeField] private GameObject[] moverObjects; // IMPORTANT: this array HAS to have same objects as scriptable object, in SAME ORDER
-    private Vector3[] currentPosition;
-    private Vector3[] targetPosition;
-    private Quaternion[] currentOrientation;
-    private Quaternion[] targetOrientation;
 
     private float moveSpeed;
     private float stepDistance;
     private float moverTime = 0f; // this represents the x value of the sine graph
-
-    private bool isTransitioning = false;
 
     private void Start()
     {
         // Ensure that the arrays have the same length
         if (moveData.moverObjectsParameters.Length == moverObjects.Length)
         {
-            // Initialize arrays
-            currentPosition = new Vector3[moverObjects.Length];
-            targetPosition = new Vector3[moverObjects.Length];
-            currentOrientation = new Quaternion[moverObjects.Length];
-            targetOrientation = new Quaternion[moverObjects.Length];
-
             for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
             {
                 MoveData.ObjectParameters objParams = moveData.moverObjectsParameters[i];
                 GameObject currentObject = moverObjects[i];
 
-                bool movePosition = objParams.movePosition;
-                bool moveRotation = objParams.moveRotation;
-                bool x_IsSine = objParams.x_Sine;
-                bool x_IsLerp = objParams.x_LerpCurve;
-                bool y_IsSine = objParams.y_Sine;
-                bool y_IsLerp = objParams.y_LerpCurve;
-                bool z_IsSine = objParams.z_Sine;
-                bool z_IsLerp = objParams.z_LerpCurve;
-
-                float X_frequency = objParams.X_frequency;
-                float X_phaseOffset = Mathf.PI * objParams.X_phaseOffset; // using PI, so if offset is 1, the movement is exactly inverse
-                float X_amplitude = objParams.X_amplitude;
-                float X_return_Offset = objParams.X_returnValueOffset;
-                float X_ClampMin = objParams.X_ClampMin;
-                float X_ClampMax = objParams.X_ClampMax;
-                AnimationCurve X_Curve = objParams.X_Curve;
-
-                float Y_frequency = objParams.Y_frequency;
-                float Y_phaseOffset = Mathf.PI * objParams.Y_phaseOffset;
-                float Y_amplitude = objParams.Y_amplitude;
-                float Y_return_Offset = objParams.Y_returnValueOffset;
-                float Y_ClampMin = objParams.Y_ClampMin;
-                float Y_ClampMax = objParams.Y_ClampMax;
-                AnimationCurve Y_Curve = objParams.Y_Curve;
-
-                float Z_frequency = objParams.Z_frequency;
-                float Z_phaseOffset = Mathf.PI * objParams.Z_phaseOffset;
-                float Z_amplitude = objParams.Z_amplitude;
-                float Z_return_Offset = objParams.Z_returnValueOffset;
-                float Z_ClampMin = objParams.Z_ClampMin;
-                float Z_ClampMax = objParams.Z_ClampMax;
-                AnimationCurve Z_Curve = objParams.Z_Curve;
-
                 Vector3 objectLocalPosition = currentObject.transform.localPosition;
+                objParams.xLocalPosition = objectLocalPosition.x; // Have to also pass these values to the Move Data,
+                objParams.yLocalPosition = objectLocalPosition.y; // Because the update method needs the initial position
+                objParams.zLocalPosition = objectLocalPosition.z;
 
-                // Calculate transition target position: the position it should be at the first frame
-                Vector3 objectTargetPosition = objectLocalPosition; // this wil only change if we want to change position
-
-                if (movePosition) 
-                {
-                    float xValue = objectLocalPosition.x;
-                    float yValue = objectLocalPosition.y;
-                    float zValue = objectLocalPosition.z;
-
-                    if (x_IsSine)
-                        xValue += SineValue(0, X_frequency, X_amplitude, X_phaseOffset, X_return_Offset); // Set all time values to zero, so it calculates first frame
-                    if (x_IsLerp)
-                        xValue += X_Curve.Evaluate(0);
-                    if (y_IsSine)
-                        yValue += SineValue(0, Y_frequency, Y_amplitude, Y_phaseOffset, Y_return_Offset);
-                    if (y_IsLerp)
-                        yValue += Y_Curve.Evaluate(0);
-                    if (z_IsSine)
-                        zValue += SineValue(0, Z_frequency, Z_amplitude, Z_phaseOffset, Z_return_Offset);
-                    if (z_IsLerp)
-                        zValue += Z_Curve.Evaluate(0);
-
-                    objectTargetPosition = new Vector3(xValue, yValue, zValue);
-                }
-
+                // == The Orientation == //
                 Quaternion objectLocalOrientation = currentObject.transform.localRotation;
-
-                // Calculate transition target position: the position it should be at the first frame
-                Quaternion objectTargetOrientation = objectLocalOrientation; // this wil only change if we want to change orientation
-                if (moveRotation)
-                {
-                    float xAngle = currentObject.transform.localEulerAngles.x;
-                    float yAngle = currentObject.transform.localEulerAngles.y;
-                    float zAngle = currentObject.transform.localEulerAngles.z;
-
-                    if (x_IsSine)
-                        xAngle += SineValue(0, X_frequency, X_amplitude, X_phaseOffset, X_return_Offset); // Set all time values to zero, so it calculates first frame
-                    if (x_IsLerp)
-                        xAngle += X_Curve.Evaluate(0);
-                    if (y_IsSine)
-                        yAngle += SineValue(0, X_frequency, X_amplitude, X_phaseOffset, X_return_Offset); // Set all time values to zero, so it calculates first frame
-                    if (y_IsLerp)
-                        yAngle += X_Curve.Evaluate(0);
-                    if (z_IsSine)
-                        zAngle += SineValue(0, X_frequency, X_amplitude, X_phaseOffset, X_return_Offset); // Set all time values to zero, so it calculates first frame
-                    if (z_IsLerp)
-                        zAngle += X_Curve.Evaluate(0);
-
-                    objectTargetOrientation = Quaternion.Euler(xAngle, yAngle, zAngle);
-                }
-
-                currentPosition[i] = objectLocalPosition;
-                targetPosition[i] = objectTargetPosition;
-                currentOrientation[i] = objectLocalOrientation;
-                targetOrientation[i] = objectTargetOrientation;
-
-                // Capture the loop variable in a local variable before starting the coroutine
-                int currentIndex = i;
+                objParams.xLocalAngle = objectLocalOrientation.x; // Also passing initial angles to Move Data
+                objParams.yLocalAngle = objectLocalOrientation.y;
+                objParams.zLocalAngle = objectLocalOrientation.z;
             }
-            StartCoroutine(Transition(currentPosition, targetPosition, currentOrientation, targetOrientation));
 
             moveSpeed = moveData.moveSpeed;
             stepDistance = moveData.stepDistance;
@@ -173,15 +78,6 @@ public class MoverControls2 : MonoBehaviour
 
     void Update()
     {
-        // Check if any transition is in progress
-        if (isTransitioning)
-        {
-            // If a transition is ongoing, you might want to skip the rest of the Update logic
-            return;
-        }
-
-        Debug.Log("== UPDATE IS RUNNING ==");
-
         moverTime += Time.deltaTime * moveSpeed;
         if (moverTime >= Mathf.PI * 2) moverTime = 0f;
         float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
@@ -194,7 +90,7 @@ public class MoverControls2 : MonoBehaviour
         for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
         {
             MoveData.ObjectParameters objParams = moveData.moverObjectsParameters[i];
-        
+
             GameObject currentObject = moverObjects[i];
 
             bool movePosition = objParams.movePosition;
@@ -282,7 +178,7 @@ public class MoverControls2 : MonoBehaviour
             if (movePosition)
                 // Applying values to new position
                 currentObject.transform.localPosition = new Vector3(localX, localY, localZ);
-                
+
 
             if (moveRotation)
             {
@@ -329,50 +225,10 @@ public class MoverControls2 : MonoBehaviour
         armControllerR.transform.localPosition = new Vector3(armswingR_LocalPosition.x, armswingR_LocalPosition.y, armswingR_LocalZ_Position);
     }
 
-    float SineValue(float time, float frequency, float amplitude, float phaseOffset, float returnOffset) 
+    float SineValue(float time, float frequency, float amplitude, float phaseOffset, float returnOffset)
     {
         return Mathf.Sin((time + phaseOffset) * frequency) * amplitude + returnOffset;
     }
-
-    IEnumerator Transition(Vector3[] currentPosition, Vector3[] targetPosition, Quaternion[] currentOrientation, Quaternion[] targetOrientation) 
-    {
-        /*if (isTransitioning)
-        {
-            Debug.LogWarning($"Coroutine is already running.");
-            yield break;
-        }*/
-
-        isTransitioning = true;
-        
-        float transitionTime = 5f;
-        float elapsedTime = 0;
-
-        while(elapsedTime < transitionTime) 
-        {
-            for (int i = 0; i < currentPosition.Length; i++)
-            {
-                Vector3 transitionPosition = Vector3.Lerp(currentPosition[i], targetPosition[i], elapsedTime / transitionTime);
-                Quaternion transitionOrientation = Quaternion.Slerp(currentOrientation[i], targetOrientation[i], elapsedTime / transitionTime);
-
-                // Apply the transition to the specified object
-                moverObjects[i].transform.localPosition = transitionPosition;
-                moverObjects[i].transform.localRotation = transitionOrientation;
-            }
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Apply the final values to all objects
-        for (int i = 0; i < targetPosition.Length; i++)
-        {
-            moverObjects[i].transform.localPosition = targetPosition[i];
-            moverObjects[i].transform.localRotation = targetOrientation[i];
-        }
-
-        isTransitioning = false;
-    }
-
 }
 
 
