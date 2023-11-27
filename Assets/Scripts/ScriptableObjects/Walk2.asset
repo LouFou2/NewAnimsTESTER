@@ -23,11 +23,11 @@ MonoBehaviour:
     movePosition: 1
     moveRotation: 0
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: -1
     X_phaseOffset: 0.25
@@ -92,11 +92,11 @@ MonoBehaviour:
     movePosition: 1
     moveRotation: 0
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: -1
     X_phaseOffset: 0.25
@@ -161,11 +161,11 @@ MonoBehaviour:
     movePosition: 1
     moveRotation: 0
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 4
     X_amplitude: -0.5
     X_phaseOffset: 0.6
@@ -212,11 +212,11 @@ MonoBehaviour:
     movePosition: 1
     moveRotation: 0
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 4
     X_amplitude: 0.5
     X_phaseOffset: 0.6
@@ -263,11 +263,11 @@ MonoBehaviour:
     movePosition: 1
     moveRotation: 0
     x_Sine: 0
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 0
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: -0.2
     X_phaseOffset: 0
@@ -314,11 +314,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 4
     X_amplitude: 7
     X_phaseOffset: 0.15
@@ -365,11 +365,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 4
     X_amplitude: 10
     X_phaseOffset: 0
@@ -416,11 +416,11 @@ MonoBehaviour:
     movePosition: 1
     moveRotation: 0
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: 1
     X_phaseOffset: 0
@@ -467,11 +467,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: 45
     X_phaseOffset: -0.15
@@ -518,11 +518,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: -45
     X_phaseOffset: -0.15
@@ -569,11 +569,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: -45
     X_phaseOffset: 0
@@ -620,11 +620,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: 45
     X_phaseOffset: 0
@@ -671,11 +671,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: -20
     X_phaseOffset: 0.1
@@ -731,11 +731,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 1
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 1
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: 20
     X_phaseOffset: 0
@@ -791,11 +791,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 0
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 0
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: 70
     X_phaseOffset: 0.3
@@ -842,11 +842,11 @@ MonoBehaviour:
     movePosition: 0
     moveRotation: 1
     x_Sine: 1
-    x_LerpCurve: 0
+    x_AnimCurve: 0
     y_Sine: 0
-    y_LerpCurve: 0
+    y_AnimCurve: 0
     z_Sine: 0
-    z_LerpCurve: 0
+    z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: -70
     X_phaseOffset: 0.3
