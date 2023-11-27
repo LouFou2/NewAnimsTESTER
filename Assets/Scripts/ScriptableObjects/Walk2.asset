@@ -15,8 +15,8 @@ MonoBehaviour:
   updated:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 1
-  stepDistance: 3
+  moveSpeed: 2
+  stepDistance: 4
   freezePosition: 1
   moverObjectsParameters:
   - objectName: StepControl_L
@@ -41,7 +41,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 2
-    Y_amplitude: 2
+    Y_amplitude: 1
     Y_phaseOffset: 0.25
     Y_returnValueOffset: 0
     Y_ClampMin: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 2
-    Y_amplitude: -2
+    Y_amplitude: -1
     Y_phaseOffset: 0.25
     Y_returnValueOffset: 0
     Y_ClampMin: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: -1
+    Z_amplitude: -0.6
     Z_phaseOffset: 0
     Z_returnValueOffset: -0.2
     Z_ClampMin: -5
@@ -242,7 +242,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: 1
+    Z_amplitude: 0.6
     Z_phaseOffset: 0
     Z_returnValueOffset: -0.2
     Z_ClampMin: -5
@@ -283,7 +283,7 @@ MonoBehaviour:
     Y_frequency: 4
     Y_amplitude: 0.6
     Y_phaseOffset: 0.07
-    Y_returnValueOffset: -0.6
+    Y_returnValueOffset: -0.3
     Y_ClampMin: -6
     Y_ClampMax: 6
     Y_Curve:
@@ -412,8 +412,8 @@ MonoBehaviour:
     xLocalAngle: 14.523375
     yLocalAngle: -0.000012813712
     zLocalAngle: 0.0000016355413
-  - objectName: HeadRotate
-    movePosition: 0
+  - objectName: HeadUpAim
+    movePosition: 1
     moveRotation: 0
     x_Sine: 1
     x_LerpCurve: 0
@@ -421,12 +421,12 @@ MonoBehaviour:
     y_LerpCurve: 0
     z_Sine: 1
     z_LerpCurve: 0
-    X_frequency: 4
-    X_amplitude: 0
+    X_frequency: 2
+    X_amplitude: 1
     X_phaseOffset: 0
     X_returnValueOffset: 0
-    X_ClampMin: -45
-    X_ClampMax: 45
+    X_ClampMin: -2
+    X_ClampMax: 2
     X_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -434,7 +434,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 2
-    Y_amplitude: 5
+    Y_amplitude: 0
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
     Y_ClampMin: -45
@@ -457,12 +457,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -1.4210855e-13
-    yLocalPosition: 1.6319009
-    zLocalPosition: -0.0000013113022
-    xLocalAngle: 354.99774
-    yLocalAngle: -0.000000052229126
-    zLocalAngle: 0.0000011956658
+    xLocalPosition: -0.0000009724358
+    yLocalPosition: 5.4
+    zLocalPosition: 0.15148759
+    xLocalAngle: -0
+    yLocalAngle: 0
+    zLocalAngle: 0
   - objectName: HandL_Rotate
     movePosition: 0
     moveRotation: 1
@@ -567,43 +567,43 @@ MonoBehaviour:
     zLocalAngle: 202.73335
   - objectName: BallPivot_L
     movePosition: 0
-    moveRotation: 0
-    x_Sine: 0
+    moveRotation: 1
+    x_Sine: 1
     x_LerpCurve: 0
-    y_Sine: 0
+    y_Sine: 1
     y_LerpCurve: 0
-    z_Sine: 0
+    z_Sine: 1
     z_LerpCurve: 0
     X_frequency: 2
-    X_amplitude: 0
+    X_amplitude: -45
     X_phaseOffset: 0
     X_returnValueOffset: 0
-    X_ClampMin: 0.1
-    X_ClampMax: 1
+    X_ClampMin: 0
+    X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 0
+    Y_frequency: 2
     Y_amplitude: 0
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
-    Y_ClampMin: -1
-    Y_ClampMax: 1
+    Y_ClampMin: -90
+    Y_ClampMax: 90
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: 0
+    Z_frequency: 2
     Z_amplitude: 0
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
-    Z_ClampMin: -1
-    Z_ClampMax: 1
+    Z_ClampMin: -90
+    Z_ClampMax: 90
     Z_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -618,43 +618,43 @@ MonoBehaviour:
     zLocalAngle: 1.3099734
   - objectName: BallPivot_R
     movePosition: 0
-    moveRotation: 0
-    x_Sine: 0
+    moveRotation: 1
+    x_Sine: 1
     x_LerpCurve: 0
-    y_Sine: 0
+    y_Sine: 1
     y_LerpCurve: 0
-    z_Sine: 0
+    z_Sine: 1
     z_LerpCurve: 0
     X_frequency: 2
-    X_amplitude: 0
+    X_amplitude: 45
     X_phaseOffset: 0
     X_returnValueOffset: 0
-    X_ClampMin: 0.1
-    X_ClampMax: 1
+    X_ClampMin: 0
+    X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 0
+    Y_frequency: 2
     Y_amplitude: 0
     Y_phaseOffset: 0
     Y_returnValueOffset: 0
-    Y_ClampMin: -1
-    Y_ClampMax: 1
+    Y_ClampMin: -90
+    Y_ClampMax: 90
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Z_frequency: 0
+    Z_frequency: 2
     Z_amplitude: 0
     Z_phaseOffset: 0
     Z_returnValueOffset: 0
-    Z_ClampMin: -1
-    Z_ClampMax: 1
+    Z_ClampMin: -90
+    Z_ClampMax: 90
     Z_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -669,7 +669,7 @@ MonoBehaviour:
     zLocalAngle: 358.69003
   - objectName: HeelPivot_L
     movePosition: 0
-    moveRotation: 0
+    moveRotation: 1
     x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 1
@@ -677,11 +677,11 @@ MonoBehaviour:
     z_Sine: 1
     z_LerpCurve: 0
     X_frequency: 2
-    X_amplitude: 0
-    X_phaseOffset: 0
+    X_amplitude: -20
+    X_phaseOffset: 0.1
     X_returnValueOffset: 0
-    X_ClampMin: -90
-    X_ClampMax: 90
+    X_ClampMin: -45
+    X_ClampMax: 0
     X_Curve:
       serializedVersion: 2
       m_Curve:
@@ -694,42 +694,6 @@ MonoBehaviour:
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.26051718
-        value: 0.23911789
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.36237168
-        value: 0.48593485
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.45616746
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.75063175
-        value: 0.48593485
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0.48593485
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
@@ -765,7 +729,7 @@ MonoBehaviour:
     zLocalAngle: 0
   - objectName: HeelPivot_R
     movePosition: 0
-    moveRotation: 0
+    moveRotation: 1
     x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 1
@@ -773,53 +737,17 @@ MonoBehaviour:
     z_Sine: 1
     z_LerpCurve: 0
     X_frequency: 2
-    X_amplitude: 0
+    X_amplitude: 20
     X_phaseOffset: 0
     X_returnValueOffset: 0
     X_ClampMin: -90
-    X_ClampMax: 90
+    X_ClampMax: 0
     X_Curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0.0014662757
         value: 0.48593488
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.4941212
-        value: 0.48593485
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.7546384
-        value: 0.23911789
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.8564929
-        value: 0.48593485
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.45616746
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.9985337
-        value: 0.48677152
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -861,19 +789,19 @@ MonoBehaviour:
     zLocalAngle: 0
   - objectName: ToePivot_L
     movePosition: 0
-    moveRotation: 0
-    x_Sine: 0
+    moveRotation: 1
+    x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 0
     y_LerpCurve: 0
     z_Sine: 0
     z_LerpCurve: 0
     X_frequency: 2
-    X_amplitude: 0
-    X_phaseOffset: 0
+    X_amplitude: 70
+    X_phaseOffset: 0.3
     X_returnValueOffset: 0
     X_ClampMin: 0
-    X_ClampMax: 0
+    X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -912,19 +840,19 @@ MonoBehaviour:
     zLocalAngle: 359.52014
   - objectName: ToePivot_R
     movePosition: 0
-    moveRotation: 0
-    x_Sine: 0
+    moveRotation: 1
+    x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 0
     y_LerpCurve: 0
     z_Sine: 0
     z_LerpCurve: 0
     X_frequency: 2
-    X_amplitude: 0
-    X_phaseOffset: 0
+    X_amplitude: -70
+    X_phaseOffset: 0.3
     X_returnValueOffset: 0
     X_ClampMin: 0
-    X_ClampMax: 0.2
+    X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
       m_Curve: []
