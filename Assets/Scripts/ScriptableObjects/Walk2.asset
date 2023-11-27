@@ -320,8 +320,8 @@ MonoBehaviour:
     z_Sine: 1
     z_LerpCurve: 0
     X_frequency: 4
-    X_amplitude: 5
-    X_phaseOffset: 0
+    X_amplitude: 7
+    X_phaseOffset: 0.15
     X_returnValueOffset: 10
     X_ClampMin: -90
     X_ClampMax: 90
@@ -344,8 +344,8 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: 5
-    Z_phaseOffset: 0
+    Z_amplitude: -5
+    Z_phaseOffset: 0.2
     Z_returnValueOffset: 0
     Z_ClampMin: -45
     Z_ClampMax: 45
@@ -371,9 +371,9 @@ MonoBehaviour:
     z_Sine: 1
     z_LerpCurve: 0
     X_frequency: 4
-    X_amplitude: -5
+    X_amplitude: 10
     X_phaseOffset: 0
-    X_returnValueOffset: -15
+    X_returnValueOffset: -10
     X_ClampMin: -90
     X_ClampMax: 90
     X_Curve:
@@ -395,8 +395,8 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: -5
-    Z_phaseOffset: 0
+    Z_amplitude: 5
+    Z_phaseOffset: 0.5
     Z_returnValueOffset: 0
     Z_ClampMin: -90
     Z_ClampMax: 90
@@ -406,66 +406,15 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    xLocalPosition: -0.000000480896
+    xLocalPosition: 0
     yLocalPosition: 5.500809
     zLocalPosition: 0.058573604
     xLocalAngle: 14.523375
     yLocalAngle: -0.000012813712
     zLocalAngle: 0.0000016355413
-  - objectName: NeckRotation
-    movePosition: 0
-    moveRotation: 1
-    x_Sine: 1
-    x_LerpCurve: 0
-    y_Sine: 1
-    y_LerpCurve: 0
-    z_Sine: 1
-    z_LerpCurve: 0
-    X_frequency: 4
-    X_amplitude: 0
-    X_phaseOffset: 0
-    X_returnValueOffset: 0
-    X_ClampMin: -1
-    X_ClampMax: 1
-    X_Curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    Y_frequency: 2
-    Y_amplitude: 15
-    Y_phaseOffset: 0
-    Y_returnValueOffset: 0
-    Y_ClampMin: -45
-    Y_ClampMax: 45
-    Y_Curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    Z_frequency: 2
-    Z_amplitude: 0
-    Z_phaseOffset: 0
-    Z_returnValueOffset: 0
-    Z_ClampMin: -1
-    Z_ClampMax: 1
-    Z_Curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    xLocalPosition: 0
-    yLocalPosition: 0.9399961
-    zLocalPosition: 0
-    xLocalAngle: 27.036057
-    yLocalAngle: -0.0000016759429
-    zLocalAngle: -0.000006971138
   - objectName: HeadRotate
     movePosition: 0
-    moveRotation: 1
+    moveRotation: 0
     x_Sine: 1
     x_LerpCurve: 0
     y_Sine: 1
@@ -550,7 +499,7 @@ MonoBehaviour:
     Z_frequency: 4
     Z_amplitude: 10
     Z_phaseOffset: 0.25
-    Z_returnValueOffset: 20
+    Z_returnValueOffset: 10
     Z_ClampMin: -90
     Z_ClampMax: 90
     Z_Curve:
@@ -601,7 +550,7 @@ MonoBehaviour:
     Z_frequency: 4
     Z_amplitude: 10
     Z_phaseOffset: 0
-    Z_returnValueOffset: -34.5
+    Z_returnValueOffset: -10
     Z_ClampMin: -90
     Z_ClampMax: 90
     Z_Curve:
