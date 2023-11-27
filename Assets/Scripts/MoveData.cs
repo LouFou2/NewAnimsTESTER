@@ -14,11 +14,11 @@ public class MoveData : ScriptableObject
         public bool moveRotation = false;
 
         public bool x_Sine = false;
-        public bool x_LerpCurve = false;
+        public bool x_AnimCurve = false;
         public bool y_Sine = false;
-        public bool y_LerpCurve = false;
+        public bool y_AnimCurve = false;
         public bool z_Sine = false;
-        public bool z_LerpCurve = false;
+        public bool z_AnimCurve = false;
 
         public float X_frequency; // X here refers to local x position of object
         public float X_amplitude;

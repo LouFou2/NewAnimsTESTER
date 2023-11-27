@@ -55,11 +55,11 @@ public class MoverControlsWithTransition : MonoBehaviour
                 bool movePosition = objParams.movePosition;
                 bool moveRotation = objParams.moveRotation;
                 bool x_IsSine = objParams.x_Sine;
-                bool x_IsLerp = objParams.x_LerpCurve;
+                bool x_IsLerp = objParams.x_AnimCurve;
                 bool y_IsSine = objParams.y_Sine;
-                bool y_IsLerp = objParams.y_LerpCurve;
+                bool y_IsLerp = objParams.y_AnimCurve;
                 bool z_IsSine = objParams.z_Sine;
-                bool z_IsLerp = objParams.z_LerpCurve;
+                bool z_IsLerp = objParams.z_AnimCurve;
 
                 float X_frequency = objParams.X_frequency;
                 float X_phaseOffset = Mathf.PI * objParams.X_phaseOffset; // using PI, so if offset is 1, the movement is exactly inverse
@@ -277,11 +277,11 @@ public class MoverControlsWithTransition : MonoBehaviour
             bool movePosition = objParams.movePosition;
             bool moveRotation = objParams.moveRotation;
             bool x_IsSine = objParams.x_Sine;
-            bool x_IsLerp = objParams.x_LerpCurve;
+            bool x_IsLerp = objParams.x_AnimCurve;
             bool y_IsSine = objParams.y_Sine;
-            bool y_IsLerp = objParams.y_LerpCurve;
+            bool y_IsLerp = objParams.y_AnimCurve;
             bool z_IsSine = objParams.z_Sine;
-            bool z_IsLerp = objParams.z_LerpCurve;
+            bool z_IsLerp = objParams.z_AnimCurve;
 
             float X_frequency = objParams.X_frequency;
             float X_phaseOffset = Mathf.PI * objParams.X_phaseOffset; // using PI, so if offset is 1, the movement is exactly inverse

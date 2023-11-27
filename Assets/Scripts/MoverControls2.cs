@@ -96,11 +96,11 @@ public class MoverControls2 : MonoBehaviour
             bool movePosition = objParams.movePosition;
             bool moveRotation = objParams.moveRotation;
             bool x_IsSine = objParams.x_Sine;
-            bool x_IsLerp = objParams.x_LerpCurve;
+            bool x_IsAnimCurve = objParams.x_AnimCurve;
             bool y_IsSine = objParams.y_Sine;
-            bool y_IsLerp = objParams.y_LerpCurve;
+            bool y_IsAnimCurve = objParams.y_AnimCurve;
             bool z_IsSine = objParams.z_Sine;
-            bool z_IsLerp = objParams.z_LerpCurve;
+            bool z_IsAnimCurve = objParams.z_AnimCurve;
 
             float X_frequency = objParams.X_frequency;
             float X_phaseOffset = Mathf.PI * objParams.X_phaseOffset; // using PI, so if offset is 1, the movement is exactly inverse
@@ -162,17 +162,17 @@ public class MoverControls2 : MonoBehaviour
 
             if (x_IsSine)
                 localX += sineValueX; // ...* see here, this is the clean returned value (but will have localPosition added if we are moving position)
-            if (x_IsLerp)
+            if (x_IsAnimCurve)
                 localX += X_Curve.Evaluate(lerpTimer);
 
             if (y_IsSine)
                 localY += sineValueY;
-            if (y_IsLerp)
+            if (y_IsAnimCurve)
                 localY += Y_Curve.Evaluate(lerpTimer);
 
             if (z_IsSine)
                 localZ += sineValueZ;
-            if (z_IsLerp)
+            if (z_IsAnimCurve)
                 localZ += Z_Curve.Evaluate(lerpTimer);
 
             if (movePosition)
@@ -195,10 +195,21 @@ public class MoverControls2 : MonoBehaviour
                 float yRotationNormalised = Mathf.InverseLerp(-Y_amplitude + Y_return_Offset, Y_amplitude + Y_return_Offset, localY);
                 float zRotationNormalised = Mathf.InverseLerp(-Z_amplitude + Z_return_Offset, Z_amplitude + Z_return_Offset, localZ);
 
+                float xAngle = 0f, yAngle = 0f, zAngle = 0f;
                 // Lerping between min-max angles, using above normalised return values
-                float xAngle = Mathf.Lerp(minXAngle, maxXAngle, xRotationNormalised);
-                float yAngle = Mathf.Lerp(minYAngle, maxYAngle, yRotationNormalised);
-                float zAngle = Mathf.Lerp(minZAngle, maxZAngle, zRotationNormalised);
+                if (x_IsSine)
+                    xAngle = Mathf.Lerp(minXAngle, maxXAngle, xRotationNormalised);
+                if (y_IsSine)
+                    yAngle = Mathf.Lerp(minYAngle, maxYAngle, yRotationNormalised);
+                if(z_IsSine)
+                    zAngle = Mathf.Lerp(minZAngle, maxZAngle, zRotationNormalised);
+
+                if (x_IsAnimCurve)
+                    xAngle = localX;
+                if (y_IsAnimCurve)
+                    yAngle = localY;
+                if (z_IsAnimCurve)
+                    zAngle = localZ;
 
                 // Applying angles to local rotation of object
                 currentObject.transform.localRotation = Quaternion.Euler(xAngle, yAngle, zAngle);
