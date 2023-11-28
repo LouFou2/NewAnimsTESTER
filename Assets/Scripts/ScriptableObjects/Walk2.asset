@@ -448,9 +448,9 @@ MonoBehaviour:
     Z_frequency: 2
     Z_amplitude: 0
     Z_phaseOffset: 0
-    Z_returnValueOffset: 0
-    Z_ClampMin: -1
-    Z_ClampMax: 1
+    Z_returnValueOffset: 2
+    Z_ClampMin: -10
+    Z_ClampMax: 10
     Z_Curve:
       serializedVersion: 2
       m_Curve: []

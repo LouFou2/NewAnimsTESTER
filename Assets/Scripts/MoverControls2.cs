@@ -83,9 +83,9 @@ public class MoverControls2 : MonoBehaviour
         float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
 
         // == Moving the Character (moving the root) == //
-        float rootZ_MoveDistance = Time.deltaTime * moveSpeed * stepDistance;
+        /*float rootZ_MoveDistance = Time.deltaTime * moveSpeed * stepDistance;
         if (freezeRootPosition) rootZ_MoveDistance = 0f;
-        rootObject.transform.Translate(rootObject.transform.forward * rootZ_MoveDistance, Space.World);
+        rootObject.transform.Translate(rootObject.transform.forward * rootZ_MoveDistance, Space.World);*/
 
         for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
         {
@@ -217,28 +217,34 @@ public class MoverControls2 : MonoBehaviour
         }
 
         // == Multiply the step movement by step distance == //
-        Vector3 stepperL_LocalPosition = stepControllerL.transform.localPosition;
-        Vector3 stepperR_LocalPosition = stepControllerR.transform.localPosition;
-        float stepperL_LocalZ_Position = stepperL_LocalPosition.z;
-        float stepperR_LocalZ_Position = stepperR_LocalPosition.z;
-        stepperL_LocalZ_Position *= stepDistance;
-        stepperR_LocalZ_Position *= stepDistance;
-        stepControllerL.transform.localPosition = new Vector3(stepperL_LocalPosition.x, stepperL_LocalPosition.y, stepperL_LocalZ_Position);
-        stepControllerR.transform.localPosition = new Vector3(stepperR_LocalPosition.x, stepperR_LocalPosition.y, stepperR_LocalZ_Position);
+        stepControllerL.transform.localPosition += positionScale(stepControllerL, 0, 0, 1); // use 1 for axis to scale
+        stepControllerR.transform.localPosition += positionScale(stepControllerR, 0, 0, 1);
+
         // == Multiply the arm swing movement by step distance == //
-        Vector3 armswingL_LocalPosition = armControllerL.transform.localPosition;
-        Vector3 armswingR_LocalPosition = armControllerR.transform.localPosition;
-        float armswingL_LocalZ_Position = armswingL_LocalPosition.z;
-        float armswingR_LocalZ_Position = armswingR_LocalPosition.z;
-        armswingL_LocalZ_Position *= stepDistance;
-        armswingR_LocalZ_Position *= stepDistance;
-        armControllerL.transform.localPosition = new Vector3(armswingL_LocalPosition.x, armswingL_LocalPosition.y, armswingL_LocalZ_Position);
-        armControllerR.transform.localPosition = new Vector3(armswingR_LocalPosition.x, armswingR_LocalPosition.y, armswingR_LocalZ_Position);
+        armControllerL.transform.localPosition += positionScale(armControllerL, 0, 0, 1);
+        armControllerR.transform.localPosition += positionScale(armControllerR, 0, 0, 1);
     }
 
     float SineValue(float time, float frequency, float amplitude, float phaseOffset, float returnOffset)
     {
         return Mathf.Sin((time + phaseOffset) * frequency) * amplitude + returnOffset;
+    }
+
+    Vector3 positionScale(GameObject objectToScale, float xScaleFactor, float yScaleFactor, float zScaleFactor)
+    {
+        Vector3 objectLocalPosition = objectToScale.transform.localPosition;
+        
+        xScaleFactor *= stepDistance;
+        yScaleFactor *= stepDistance;
+        zScaleFactor *= stepDistance;
+
+        float scaledXPosition = objectLocalPosition.x * xScaleFactor;
+        float scaledYPosition = objectLocalPosition.y * yScaleFactor;
+        float scaledZPosition = objectLocalPosition.z * zScaleFactor;
+
+        Vector3 scaledPosition = new Vector3(scaledXPosition, scaledYPosition, scaledZPosition);
+        Vector3 returnPosition = objectLocalPosition + scaledPosition;
+        return scaledPosition;
     }
 }
 
