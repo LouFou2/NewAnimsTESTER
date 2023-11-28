@@ -6,7 +6,8 @@ using System.Collections.Generic;
 
 public class MoverControls : MonoBehaviour
 {
-    [SerializeField] private MoveData moveData;
+    [SerializeField] private AnimsManager animsManager;
+    private MoveData moveData;
     [SerializeField] private PlayerController playerController;
 
     [SerializeField] private GameObject rootObject;
@@ -28,6 +29,10 @@ public class MoverControls : MonoBehaviour
     private float stepDistance;
     private float moverTime = 0f; // this represents the x value of the sine graph
 
+    private void Awake()
+    {
+        moveData = animsManager.currentAnim;
+    }
     private void Start()
     {
         // Ensure that the arrays have the same length
@@ -83,6 +88,8 @@ public class MoverControls : MonoBehaviour
 
     void Update()
     {
+        moveData = animsManager.currentAnim;
+        
         currentRootPosition = rootObject.transform.position;
         float moveAmount = Vector3.Distance(previousRootPosition, currentRootPosition); // might have to recalculate this to use vector2 (z,x)
 
