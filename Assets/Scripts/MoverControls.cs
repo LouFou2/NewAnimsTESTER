@@ -4,12 +4,15 @@ using System.Collections;
 using static UnityEngine.Rendering.DebugUI;
 using System.Collections.Generic;
 
-public class MoverControls2 : MonoBehaviour
+public class MoverControls : MonoBehaviour
 {
     [SerializeField] private MoveData moveData;
+    [SerializeField] private PlayerController playerController;
 
     [SerializeField] private GameObject rootObject;
     [SerializeField] private bool freezeRootPosition = false;
+    private Vector3 previousRootPosition;
+    private Vector3 currentRootPosition;
 
     // == Have to add the objects that control the legs == //
     [SerializeField] private GameObject stepControllerL;
@@ -50,6 +53,8 @@ public class MoverControls2 : MonoBehaviour
             moveSpeed = moveData.moveSpeed;
             stepDistance = moveData.stepDistance;
             freezeRootPosition = moveData.freezePosition;
+            currentRootPosition = rootObject.transform.position;
+            previousRootPosition = currentRootPosition;
         }
         else
         {
@@ -78,14 +83,15 @@ public class MoverControls2 : MonoBehaviour
 
     void Update()
     {
-        moverTime += Time.deltaTime * moveSpeed;
+        currentRootPosition = rootObject.transform.position;
+        float moveAmount = Vector3.Distance(previousRootPosition, currentRootPosition); // might have to recalculate this to use vector2 (z,x)
+        float stepDistanceFactor = playerController.movementInput.magnitude;
+        stepDistance = moveData.stepDistance * stepDistanceFactor;
+
+        //moverTime += Time.deltaTime * moveSpeed;
+        moverTime += moveAmount * moveSpeed;
         if (moverTime >= Mathf.PI * 2) moverTime = 0f;
         float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
-
-        // == Moving the Character (moving the root) == //
-        /*float rootZ_MoveDistance = Time.deltaTime * moveSpeed * stepDistance;
-        if (freezeRootPosition) rootZ_MoveDistance = 0f;
-        rootObject.transform.Translate(rootObject.transform.forward * rootZ_MoveDistance, Space.World);*/
 
         for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
         {
@@ -223,6 +229,8 @@ public class MoverControls2 : MonoBehaviour
         // == Multiply the arm swing movement by step distance == //
         armControllerL.transform.localPosition += positionScale(armControllerL, 0, 0, 1);
         armControllerR.transform.localPosition += positionScale(armControllerR, 0, 0, 1);
+
+        previousRootPosition = currentRootPosition;
     }
 
     float SineValue(float time, float frequency, float amplitude, float phaseOffset, float returnOffset)
@@ -243,7 +251,6 @@ public class MoverControls2 : MonoBehaviour
         float scaledZPosition = objectLocalPosition.z * zScaleFactor;
 
         Vector3 scaledPosition = new Vector3(scaledXPosition, scaledYPosition, scaledZPosition);
-        Vector3 returnPosition = objectLocalPosition + scaledPosition;
         return scaledPosition;
     }
 }

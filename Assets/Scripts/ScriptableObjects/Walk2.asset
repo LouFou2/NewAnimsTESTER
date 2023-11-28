@@ -15,8 +15,8 @@ MonoBehaviour:
   updated:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 2
-  stepDistance: 4
+  moveSpeed: 4
+  stepDistance: 4.5
   freezePosition: 1
   moverObjectsParameters:
   - objectName: StepControl_L

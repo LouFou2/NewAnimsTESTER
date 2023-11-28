@@ -8,14 +8,13 @@ public class PlayerController : MonoBehaviour
     private InputActionReference movementControl;
     [SerializeField]
     private InputActionReference jumpControl;
-    [SerializeField]
-    private float playerSpeed = 2.0f;
-    [SerializeField]
-    private float jumpHeight = 1.0f;
+
+    public float playerSpeed = 2.0f;
+    [HideInInspector] public Vector2 movementInput;
+    public float jumpHeight = 1.0f;
     [SerializeField]
     private float gravityValue = -9.81f;
-    [SerializeField]
-    private float rotationSpeed = 4f;
+    public float rotationSpeed = 4f;
 
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -48,13 +47,14 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector2 movement = movementControl.action.ReadValue<Vector2>();
-        Vector3 move = new Vector3(movement.x, 0, movement.y);
+        // == Moving == //
+        movementInput = movementControl.action.ReadValue<Vector2>();
+        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
         move = cameraMainTransform.forward * move.z + cameraMainTransform.right * move.x;
         move.y = 0f;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        // Changes the height position of the player..
+        // == Jumping == //
         if (jumpControl.action.triggered && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
@@ -63,9 +63,10 @@ public class PlayerController : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-        if (movement != Vector2.zero) 
+        // == Rotating == //
+        if (movementInput != Vector2.zero) 
         { 
-            float targetAngle = Mathf.Atan2(movement.x, movement.y) * Mathf.Rad2Deg + cameraMainTransform.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(movementInput.x, movementInput.y) * Mathf.Rad2Deg + cameraMainTransform.eulerAngles.y;
             Quaternion rotation = Quaternion.Euler(0, targetAngle, 0);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
