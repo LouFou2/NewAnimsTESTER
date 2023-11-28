@@ -25,7 +25,7 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "8638a78a-ce68-438d-a92b-fd7a2e15862f",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -126,6 +126,17 @@
                     "name": "",
                     "id": "24d87f66-2092-42f9-b9b2-5c866761f2b7",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b0f9257-d1e1-4a73-b7f9-6910dbce6e72",
+                    "path": "<XInputController>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

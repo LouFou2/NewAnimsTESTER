@@ -10,7 +10,7 @@ public class MoverControls : MonoBehaviour
     [SerializeField] private PlayerController playerController;
 
     [SerializeField] private GameObject rootObject;
-    [SerializeField] private bool freezeRootPosition = false;
+    [SerializeField] private bool movingRootPosition = false;
     private Vector3 previousRootPosition;
     private Vector3 currentRootPosition;
 
@@ -52,7 +52,7 @@ public class MoverControls : MonoBehaviour
 
             moveSpeed = moveData.moveSpeed;
             stepDistance = moveData.stepDistance;
-            freezeRootPosition = moveData.freezePosition;
+            movingRootPosition = moveData.movingRootPosition;
             currentRootPosition = rootObject.transform.position;
             previousRootPosition = currentRootPosition;
         }
@@ -73,7 +73,7 @@ public class MoverControls : MonoBehaviour
     {
         moveSpeed = moveData.moveSpeed;
         stepDistance = moveData.stepDistance;
-        freezeRootPosition = moveData.freezePosition;
+        movingRootPosition = moveData.movingRootPosition;
 
         for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
         {
@@ -85,11 +85,15 @@ public class MoverControls : MonoBehaviour
     {
         currentRootPosition = rootObject.transform.position;
         float moveAmount = Vector3.Distance(previousRootPosition, currentRootPosition); // might have to recalculate this to use vector2 (z,x)
-        float stepDistanceFactor = playerController.movementInput.magnitude;
-        stepDistance = moveData.stepDistance * stepDistanceFactor;
 
-        //moverTime += Time.deltaTime * moveSpeed;
-        moverTime += moveAmount * moveSpeed;
+        float stepDistanceFactor = playerController.movementInput.magnitude;
+        //stepDistance = moveData.stepDistance * stepDistanceFactor;
+
+        if(!movingRootPosition)
+            moverTime += Time.deltaTime * moveSpeed; // use this if movement is NOT related to character movement in world space
+        if(movingRootPosition)
+            moverTime += moveAmount; // use this if movement IS related to character movement in world space
+
         if (moverTime >= Mathf.PI * 2) moverTime = 0f;
         float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
 
@@ -110,7 +114,7 @@ public class MoverControls : MonoBehaviour
 
             float X_frequency = objParams.X_frequency;
             float X_phaseOffset = Mathf.PI * objParams.X_phaseOffset; // using PI, so if offset is 1, the movement is exactly inverse
-            float X_amplitude = objParams.X_amplitude;
+            float X_amplitude = objParams.X_amplitude;// * stepDistanceFactor;
             float X_return_Offset = objParams.X_returnValueOffset;
             float X_ClampMin = objParams.X_ClampMin;
             float X_ClampMax = objParams.X_ClampMax;
@@ -118,7 +122,7 @@ public class MoverControls : MonoBehaviour
 
             float Y_frequency = objParams.Y_frequency;
             float Y_phaseOffset = Mathf.PI * objParams.Y_phaseOffset;
-            float Y_amplitude = objParams.Y_amplitude;
+            float Y_amplitude = objParams.Y_amplitude;// * stepDistanceFactor;
             float Y_return_Offset = objParams.Y_returnValueOffset;
             float Y_ClampMin = objParams.Y_ClampMin;
             float Y_ClampMax = objParams.Y_ClampMax;
@@ -126,7 +130,7 @@ public class MoverControls : MonoBehaviour
 
             float Z_frequency = objParams.Z_frequency;
             float Z_phaseOffset = Mathf.PI * objParams.Z_phaseOffset;
-            float Z_amplitude = objParams.Z_amplitude;
+            float Z_amplitude = objParams.Z_amplitude;// * stepDistanceFactor;
             float Z_return_Offset = objParams.Z_returnValueOffset;
             float Z_ClampMin = objParams.Z_ClampMin;
             float Z_ClampMax = objParams.Z_ClampMax;
@@ -224,7 +228,7 @@ public class MoverControls : MonoBehaviour
 
         // == Multiply the step movement by step distance == //
         stepControllerL.transform.localPosition += positionScale(stepControllerL, 0, 0, 1); // use 1 for axis to scale
-        stepControllerR.transform.localPosition += positionScale(stepControllerR, 0, 0, 1);
+        stepControllerR.transform.localPosition += positionScale(stepControllerR, 0, 0, stepDistanceFactor);
 
         // == Multiply the arm swing movement by step distance == //
         armControllerL.transform.localPosition += positionScale(armControllerL, 0, 0, 1);

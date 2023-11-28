@@ -221,7 +221,7 @@ public class MoverControlsWithTransition : MonoBehaviour
 
             moveSpeed = moveData.moveSpeed;
             stepDistance = moveData.stepDistance;
-            freezeRootPosition = moveData.freezePosition;
+            freezeRootPosition = moveData.movingRootPosition;
         }
         else
         {
@@ -240,7 +240,7 @@ public class MoverControlsWithTransition : MonoBehaviour
     {
         moveSpeed = moveData.moveSpeed;
         stepDistance = moveData.stepDistance;
-        freezeRootPosition = moveData.freezePosition;
+        freezeRootPosition = moveData.movingRootPosition;
 
         for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
         {
