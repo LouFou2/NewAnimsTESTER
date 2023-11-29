@@ -7,20 +7,33 @@ public class AnimsManager : MonoBehaviour
     [SerializeField]
     private MoveData[] anims;
     public MoveData currentAnim;
+    public MoveData previousAnim;
     private int animsIndex;
+    private bool animsIndexChanged = false;
 
     void Awake()
     {
         animsIndex = 0;
         currentAnim = anims[animsIndex];
+        previousAnim = currentAnim;
+        animsIndexChanged = false;
     }
     void Update()
     {
-        bool previousAnim = Input.GetKeyDown(KeyCode.Comma);
-        bool nextAnim = Input.GetKeyDown(KeyCode.Period);
+        bool minusAnim = Input.GetKeyDown(KeyCode.Comma);
+        bool plusAnim = Input.GetKeyDown(KeyCode.Period);
 
-        animsIndex += (previousAnim) ? -1 : 0;
-        animsIndex += (nextAnim) ? 1 : 0;
+        animsIndexChanged = (minusAnim || plusAnim) ? true : false;
+        if (animsIndexChanged)
+        {
+            previousAnim = currentAnim;
+            animsIndexChanged = false;
+        }
+
+        animsIndex += (minusAnim) ? -1 : 0;
+        animsIndex += (plusAnim) ? 1 : 0;
+
+
 
         if (animsIndex >= anims.Length)
             animsIndex = 0; // cycle back to start

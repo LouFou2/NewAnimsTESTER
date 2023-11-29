@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 using System.Collections;
 using static UnityEngine.Rendering.DebugUI;
@@ -7,11 +8,13 @@ using System.Collections.Generic;
 public class MoverControls : MonoBehaviour
 {
     [SerializeField] private AnimsManager animsManager;
-    private MoveData moveData;
+    private MoveData currentMoveData;
+    private MoveData previousMoveData;
     [SerializeField] private PlayerController playerController;
 
     [SerializeField] private GameObject rootObject;
     [SerializeField] private bool movingRootPosition = false;
+
     private Vector3 previousRootPosition;
     private Vector3 currentRootPosition;
 
@@ -25,22 +28,32 @@ public class MoverControls : MonoBehaviour
     [Header("Put Mover Objects in same order as in MoveData Scriptable Object")]
     [SerializeField] private GameObject[] moverObjects; // IMPORTANT: this array HAS to have same objects as scriptable object, in SAME ORDER
 
-    private float moveSpeed;
-    private float stepDistance;
-    private float moverTime = 0f; // this represents the x value of the sine graph
+    private float currentMoveSpeed;
+    private float previousMoveSpeed;
+    private float currentStepDistance;
+    private float previousStepDistance;
+
+
+    private float moverTime = 0f; // controlling time values of curves (dont mess with this)
 
     private void Awake()
     {
-        moveData = animsManager.currentAnim;
+        if (animsManager == null)
+        {
+            Debug.LogError("animsManager reference is not set!");
+            return;
+        }
+        currentMoveData = animsManager.currentAnim;
+        previousMoveData = animsManager.previousAnim;
     }
     private void Start()
     {
         // Ensure that the arrays have the same length
-        if (moveData.moverObjectsParameters.Length == moverObjects.Length)
+        if (currentMoveData.moverObjectsParameters.Length == moverObjects.Length)
         {
-            for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
+            for (int i = 0; i < currentMoveData.moverObjectsParameters.Length; i++)
             {
-                MoveData.ObjectParameters objParams = moveData.moverObjectsParameters[i];
+                MoveData.ObjectParameters objParams = currentMoveData.moverObjectsParameters[i];
                 GameObject currentObject = moverObjects[i];
 
                 Vector3 objectLocalPosition = currentObject.transform.localPosition;
@@ -55,9 +68,13 @@ public class MoverControls : MonoBehaviour
                 objParams.zLocalAngle = currentObject.transform.localEulerAngles.z;
             }
 
-            moveSpeed = moveData.moveSpeed;
-            stepDistance = moveData.stepDistance;
-            movingRootPosition = moveData.movingRootPosition;
+            currentMoveSpeed = currentMoveData.moveSpeed;
+            previousMoveSpeed = previousMoveData.moveSpeed;
+            currentStepDistance = currentMoveData.stepDistance;
+            previousStepDistance = previousMoveData.stepDistance;
+
+            movingRootPosition = currentMoveData.movingRootPosition;
+
             currentRootPosition = rootObject.transform.position;
             previousRootPosition = currentRootPosition;
         }
@@ -68,27 +85,33 @@ public class MoverControls : MonoBehaviour
     }
     private void OnEnable()
     {
-        moveData.updated.AddListener(MoveDataUpdates);
+        if (currentMoveData != null && currentMoveData.updated != null)
+        {
+            currentMoveData.updated.AddListener(MoveDataUpdates);
+        }
     }
     private void OnDisable()
     {
-        moveData.updated.RemoveListener(MoveDataUpdates);
+        if (currentMoveData != null && currentMoveData.updated != null)
+        {
+            currentMoveData.updated.RemoveListener(MoveDataUpdates);
+        }
     }
     void MoveDataUpdates()
     {
-        moveSpeed = moveData.moveSpeed;
-        stepDistance = moveData.stepDistance;
-        movingRootPosition = moveData.movingRootPosition;
+        currentMoveSpeed = currentMoveData.moveSpeed;
+        currentStepDistance = currentMoveData.stepDistance;
+        movingRootPosition = currentMoveData.movingRootPosition;
 
-        for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
+        for (int i = 0; i < currentMoveData.moverObjectsParameters.Length; i++)
         {
-            MoveData.ObjectParameters objParams = moveData.moverObjectsParameters[i];
+            MoveData.ObjectParameters objParams = currentMoveData.moverObjectsParameters[i];
         }
     }
 
     void Update()
     {
-        moveData = animsManager.currentAnim;
+        currentMoveData = animsManager.currentAnim;
         
         currentRootPosition = rootObject.transform.position;
         float moveAmount = Vector3.Distance(previousRootPosition, currentRootPosition); // might have to recalculate this to use vector2 (z,x)
@@ -97,16 +120,16 @@ public class MoverControls : MonoBehaviour
         //stepDistance = moveData.stepDistance * stepDistanceFactor;
 
         if(!movingRootPosition)
-            moverTime += Time.deltaTime * moveSpeed; // use this if movement is NOT related to character movement in world space
+            moverTime += Time.deltaTime * currentMoveSpeed; // use this if movement is NOT related to character movement in world space
         if(movingRootPosition)
             moverTime += moveAmount; // use this if movement IS related to character movement in world space
 
         if (moverTime >= Mathf.PI * 2) moverTime = 0f;
         float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
 
-        for (int i = 0; i < moveData.moverObjectsParameters.Length; i++)
+        for (int i = 0; i < currentMoveData.moverObjectsParameters.Length; i++)
         {
-            MoveData.ObjectParameters objParams = moveData.moverObjectsParameters[i];
+            MoveData.ObjectParameters objParams = currentMoveData.moverObjectsParameters[i];
 
             GameObject currentObject = moverObjects[i];
 
@@ -235,7 +258,7 @@ public class MoverControls : MonoBehaviour
 
         // == Multiply the step movement by step distance == //
         stepControllerL.transform.localPosition += positionScale(stepControllerL, 0, 0, 1); // use 1 for axis to scale
-        stepControllerR.transform.localPosition += positionScale(stepControllerR, 0, 0, stepDistanceFactor);
+        stepControllerR.transform.localPosition += positionScale(stepControllerR, 0, 0, 1);
 
         // == Multiply the arm swing movement by step distance == //
         armControllerL.transform.localPosition += positionScale(armControllerL, 0, 0, 1);
@@ -253,9 +276,9 @@ public class MoverControls : MonoBehaviour
     {
         Vector3 objectLocalPosition = objectToScale.transform.localPosition;
         
-        xScaleFactor *= stepDistance;
-        yScaleFactor *= stepDistance;
-        zScaleFactor *= stepDistance;
+        xScaleFactor *= currentStepDistance;
+        yScaleFactor *= currentStepDistance;
+        zScaleFactor *= currentStepDistance;
 
         float scaledXPosition = objectLocalPosition.x * xScaleFactor;
         float scaledYPosition = objectLocalPosition.y * yScaleFactor;

@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Animations.Rigging;
 
 [CreateAssetMenu(fileName = "MoveData", menuName = "someMoveData")]
 public class MoveData : ScriptableObject

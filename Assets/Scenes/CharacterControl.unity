@@ -1860,7 +1860,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614576688}
-  m_LocalRotation: {x: -0.0033145489, y: -0.000000014273897, z: -4.7311786e-11, w: 0.9999945}
+  m_LocalRotation: {x: -0.0033145468, y: -0.000000012016501, z: -3.982947e-11, w: 0.9999945}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2189,6 +2189,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 48cc166507ca8a34691222fb0d66273e, type: 2}
   - {fileID: 11400000, guid: d8c8f959abe66774bbae612e119a4626, type: 2}
   currentAnim: {fileID: 0}
+  previousAnim: {fileID: 0}
 --- !u!1 &707663998
 GameObject:
   m_ObjectHideFlags: 0
@@ -3243,7 +3244,7 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   jumpHeight: 1
   gravityValue: -9.81
-  rotationSpeed: 4
+  rotationSpeed: 10
 --- !u!143 &982446466
 CharacterController:
   m_ObjectHideFlags: 0
