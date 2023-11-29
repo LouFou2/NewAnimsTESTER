@@ -4,6 +4,7 @@ using UnityEngine.Rendering;
 using System.Collections;
 using static UnityEngine.Rendering.DebugUI;
 using System.Collections.Generic;
+using static System.TimeZoneInfo;
 
 public class MoverControls : MonoBehaviour
 {
@@ -33,8 +34,10 @@ public class MoverControls : MonoBehaviour
     private float currentStepDistance;
     private float previousStepDistance;
 
-
     private float moverTime = 0f; // controlling time values of curves (dont mess with this)
+    private float transitionTime = 1f; //transition time is at 1 (lerp previous - current) to set values to "current"
+    private float transitionSpeed;
+    private bool transitionTrigger = false;
 
     private void Awake()
     {
@@ -82,6 +85,10 @@ public class MoverControls : MonoBehaviour
         {
             Debug.LogError("Mismatched array lengths between moveData.moverObjectsParameters and moverObjects.");
         }
+
+        transitionTime = 1f;
+        transitionSpeed = animsManager.transitionSpeed;
+        transitionTrigger = false;
     }
     private void OnEnable()
     {
@@ -112,12 +119,16 @@ public class MoverControls : MonoBehaviour
     void Update()
     {
         currentMoveData = animsManager.currentAnim;
-        
+        previousMoveData = animsManager.previousAnim;
+        transitionTrigger = animsManager.transitionTrue;
+        transitionSpeed = animsManager.transitionSpeed; // *** remove this before building (it's set in Start)
+        currentStepDistance = currentMoveData.stepDistance;
+        previousStepDistance = previousMoveData.stepDistance;
+
         currentRootPosition = rootObject.transform.position;
         float moveAmount = Vector3.Distance(previousRootPosition, currentRootPosition); // might have to recalculate this to use vector2 (z,x)
 
-        float stepDistanceFactor = playerController.movementInput.magnitude;
-        //stepDistance = moveData.stepDistance * stepDistanceFactor;
+        // == Time Stuff == //
 
         if(!movingRootPosition)
             moverTime += Time.deltaTime * currentMoveSpeed; // use this if movement is NOT related to character movement in world space
@@ -127,57 +138,22 @@ public class MoverControls : MonoBehaviour
         if (moverTime >= Mathf.PI * 2) moverTime = 0f;
         float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
 
+        if (transitionTrigger)
+        {
+            StartCoroutine(TransitionTimer());
+        }
+
         for (int i = 0; i < currentMoveData.moverObjectsParameters.Length; i++)
         {
-            MoveData.ObjectParameters objParams = currentMoveData.moverObjectsParameters[i];
+            MoveData.ObjectParameters currentObjParams = currentMoveData.moverObjectsParameters[i];
+            MoveData.ObjectParameters previousObjParams = previousMoveData.moverObjectsParameters[i];
 
             GameObject currentObject = moverObjects[i];
 
-            bool movePosition = objParams.movePosition;
-            bool moveRotation = objParams.moveRotation;
-            bool x_IsSine = objParams.x_Sine;
-            bool x_IsAnimCurve = objParams.x_AnimCurve;
-            bool y_IsSine = objParams.y_Sine;
-            bool y_IsAnimCurve = objParams.y_AnimCurve;
-            bool z_IsSine = objParams.z_Sine;
-            bool z_IsAnimCurve = objParams.z_AnimCurve;
+            // == Setting up for Position and Rotation Changes == //
 
-            float X_frequency = objParams.X_frequency;
-            float X_phaseOffset = Mathf.PI * objParams.X_phaseOffset; // using PI, so if offset is 1, the movement is exactly inverse
-            float X_amplitude = objParams.X_amplitude;// * stepDistanceFactor;
-            float X_return_Offset = objParams.X_returnValueOffset;
-            float X_ClampMin = objParams.X_ClampMin;
-            float X_ClampMax = objParams.X_ClampMax;
-            AnimationCurve X_Curve = objParams.X_Curve;
-
-            float Y_frequency = objParams.Y_frequency;
-            float Y_phaseOffset = Mathf.PI * objParams.Y_phaseOffset;
-            float Y_amplitude = objParams.Y_amplitude;// * stepDistanceFactor;
-            float Y_return_Offset = objParams.Y_returnValueOffset;
-            float Y_ClampMin = objParams.Y_ClampMin;
-            float Y_ClampMax = objParams.Y_ClampMax;
-            AnimationCurve Y_Curve = objParams.Y_Curve;
-
-            float Z_frequency = objParams.Z_frequency;
-            float Z_phaseOffset = Mathf.PI * objParams.Z_phaseOffset;
-            float Z_amplitude = objParams.Z_amplitude;// * stepDistanceFactor;
-            float Z_return_Offset = objParams.Z_returnValueOffset;
-            float Z_ClampMin = objParams.Z_ClampMin;
-            float Z_ClampMax = objParams.Z_ClampMax;
-            AnimationCurve Z_Curve = objParams.Z_Curve;
-
-            float sineValueX = SineValue(moverTime, X_frequency, X_amplitude, X_phaseOffset, X_return_Offset);
-            float sineValueY = SineValue(moverTime, Y_frequency, Y_amplitude, Y_phaseOffset, Y_return_Offset);
-            float sineValueZ = SineValue(moverTime, Z_frequency, Z_amplitude, Z_phaseOffset, Z_return_Offset);
-
-            if (sineValueX < X_ClampMin) sineValueX = X_ClampMin;
-            if (sineValueX > X_ClampMax) sineValueX = X_ClampMax;
-
-            if (sineValueY < Y_ClampMin) sineValueY = Y_ClampMin;
-            if (sineValueY > Y_ClampMax) sineValueY = Y_ClampMax;
-
-            if (sineValueZ < Z_ClampMin) sineValueZ = Z_ClampMin;
-            if (sineValueZ > Z_ClampMax) sineValueZ = Z_ClampMax;
+            bool movePosition = currentObjParams.movePosition; // the idea is that these should stay the same
+            bool moveRotation = currentObjParams.moveRotation; // the parameter setup should remain the same for different anims
 
             float localX = 0;
             float localY = 0;
@@ -189,66 +165,171 @@ public class MoverControls : MonoBehaviour
 
             if (movePosition)
             {
-                localX = objParams.xLocalPosition; // if movement, then we add the initial position of the object
-                localY = objParams.yLocalPosition; // otherwise it will just use the returned value for the rotations
-                localZ = objParams.zLocalPosition; // * see below...
+                localX = currentObjParams.xLocalPosition; // we have to add the returned values to initial position of the object
+                localY = currentObjParams.yLocalPosition; // 
+                localZ = currentObjParams.zLocalPosition; // see below ...*
             }
             if (moveRotation)
             {
-                initialLocalRotationX = (objParams.xLocalAngle);
-                initialLocalRotationY = (objParams.yLocalAngle);
-                initialLocalRotationZ = (objParams.zLocalAngle);
+                initialLocalRotationX = currentObjParams.xLocalAngle;
+                initialLocalRotationY = currentObjParams.yLocalAngle;
+                initialLocalRotationZ = currentObjParams.zLocalAngle;
             }
 
-            if (x_IsSine)
-                localX += sineValueX; // ...* see here, this is the clean returned value (but will have localPosition added if we are moving position)
-            if (x_IsAnimCurve)
-                localX += X_Curve.Evaluate(lerpTimer);
+            // == Variables used in calculations == //
 
-            if (y_IsSine)
-                localY += sineValueY;
-            if (y_IsAnimCurve)
-                localY += Y_Curve.Evaluate(lerpTimer);
+            bool currentX_IsSine = currentObjParams.x_Sine;             
+            bool currentX_IsAnimCurve = currentObjParams.x_AnimCurve;
+            bool currentY_IsSine = currentObjParams.y_Sine;
+            bool currentY_IsAnimCurve = currentObjParams.y_AnimCurve;
+            bool currentZ_IsSine = currentObjParams.z_Sine;
+            bool currentZ_IsAnimCurve = currentObjParams.z_AnimCurve;
 
-            if (z_IsSine)
-                localZ += sineValueZ;
-            if (z_IsAnimCurve)
-                localZ += Z_Curve.Evaluate(lerpTimer);
+            float currentX_frequency = currentObjParams.X_frequency;
+            float currentX_phaseOffset = Mathf.PI * currentObjParams.X_phaseOffset; // using PI, so if offset is 1, the movement is exactly inverse
+            float currentX_amplitude = currentObjParams.X_amplitude;
+            float currentX_return_Offset = currentObjParams.X_returnValueOffset;
+            float currentX_ClampMin = currentObjParams.X_ClampMin;
+            float currentX_ClampMax = currentObjParams.X_ClampMax;
+            AnimationCurve currentX_Curve = currentObjParams.X_Curve;
+
+            float currentY_frequency = currentObjParams.Y_frequency;
+            float currentY_phaseOffset = Mathf.PI * currentObjParams.Y_phaseOffset;
+            float currentY_amplitude = currentObjParams.Y_amplitude;
+            float currentY_return_Offset = currentObjParams.Y_returnValueOffset;
+            float currentY_ClampMin = currentObjParams.Y_ClampMin;
+            float currentY_ClampMax = currentObjParams.Y_ClampMax;
+            AnimationCurve currentY_Curve = currentObjParams.Y_Curve;
+
+            float currentZ_frequency = currentObjParams.Z_frequency;
+            float currentZ_phaseOffset = Mathf.PI * currentObjParams.Z_phaseOffset;
+            float currentZ_amplitude = currentObjParams.Z_amplitude;
+            float currentZ_return_Offset = currentObjParams.Z_returnValueOffset;
+            float currentZ_ClampMin = currentObjParams.Z_ClampMin;
+            float currentZ_ClampMax = currentObjParams.Z_ClampMax;
+            AnimationCurve currentZ_Curve = currentObjParams.Z_Curve;
+
+            float currentSineValueX = SineValue(moverTime, currentX_frequency, currentX_amplitude, currentX_phaseOffset, currentX_return_Offset);
+            float currentSineValueY = SineValue(moverTime, currentY_frequency, currentY_amplitude, currentY_phaseOffset, currentY_return_Offset);
+            float currentSineValueZ = SineValue(moverTime, currentZ_frequency, currentZ_amplitude, currentZ_phaseOffset, currentZ_return_Offset);
+
+            if (currentSineValueX < currentX_ClampMin) currentSineValueX = currentX_ClampMin;
+            if (currentSineValueX > currentX_ClampMax) currentSineValueX = currentX_ClampMax;
+
+            if (currentSineValueY < currentY_ClampMin) currentSineValueY = currentY_ClampMin;
+            if (currentSineValueY > currentY_ClampMax) currentSineValueY = currentY_ClampMax;
+
+            if (currentSineValueZ < currentZ_ClampMin) currentSineValueZ = currentZ_ClampMin;
+            if (currentSineValueZ > currentZ_ClampMax) currentSineValueZ = currentZ_ClampMax;
+
+            // == Do same for previous parameter values == //
+
+            bool previousX_IsSine = previousObjParams.x_Sine;
+            bool previousX_IsAnimCurve = previousObjParams.x_AnimCurve;
+            bool previousY_IsSine = previousObjParams.y_Sine;
+            bool previousY_IsAnimCurve = previousObjParams.y_AnimCurve;
+            bool previousZ_IsSine = previousObjParams.z_Sine;
+            bool previousZ_IsAnimCurve = previousObjParams.z_AnimCurve;
+
+            float previousX_frequency = previousObjParams.X_frequency;
+            float previousX_phaseOffset = Mathf.PI * previousObjParams.X_phaseOffset; // using PI, so if offset is 1, the movement is exactly inverse
+            float previousX_amplitude = previousObjParams.X_amplitude;
+            float previousX_return_Offset = previousObjParams.X_returnValueOffset;
+            float previousX_ClampMin = previousObjParams.X_ClampMin;
+            float previousX_ClampMax = previousObjParams.X_ClampMax;
+            AnimationCurve previousX_Curve = previousObjParams.X_Curve;
+
+            float previousY_frequency = previousObjParams.Y_frequency;
+            float previousY_phaseOffset = Mathf.PI * previousObjParams.Y_phaseOffset;
+            float previousY_amplitude = previousObjParams.Y_amplitude;
+            float previousY_return_Offset = previousObjParams.Y_returnValueOffset;
+            float previousY_ClampMin = previousObjParams.Y_ClampMin;
+            float previousY_ClampMax = previousObjParams.Y_ClampMax;
+            AnimationCurve previousY_Curve = previousObjParams.Y_Curve;
+
+            float previousZ_frequency = previousObjParams.Z_frequency;
+            float previousZ_phaseOffset = Mathf.PI * previousObjParams.Z_phaseOffset;
+            float previousZ_amplitude = previousObjParams.Z_amplitude;
+            float previousZ_return_Offset = previousObjParams.Z_returnValueOffset;
+            float previousZ_ClampMin = previousObjParams.Z_ClampMin;
+            float previousZ_ClampMax = previousObjParams.Z_ClampMax;
+            AnimationCurve previousZ_Curve = previousObjParams.Z_Curve;
+
+            float previousSineValueX = SineValue(moverTime, previousX_frequency, previousX_amplitude, previousX_phaseOffset, previousX_return_Offset);
+            float previousSineValueY = SineValue(moverTime, previousY_frequency, previousY_amplitude, previousY_phaseOffset, previousY_return_Offset);
+            float previousSineValueZ = SineValue(moverTime, previousZ_frequency, previousZ_amplitude, previousZ_phaseOffset, previousZ_return_Offset);
+
+            if (previousSineValueX < previousX_ClampMin) previousSineValueX = previousX_ClampMin;
+            if (previousSineValueX > previousX_ClampMax) previousSineValueX = previousX_ClampMax;
+
+            if (previousSineValueY < previousY_ClampMin) previousSineValueY = previousY_ClampMin;
+            if (previousSineValueY > previousY_ClampMax) previousSineValueY = previousY_ClampMax;
+
+            if (previousSineValueZ < previousZ_ClampMin) previousSineValueZ = previousZ_ClampMin;
+            if (previousSineValueZ > previousZ_ClampMax) previousSineValueZ = previousZ_ClampMax;
+
+            // == Calculate actual values between previous/current == //
+
+            float prevTransitionX = 0f, prevTransitionY = 0f, prevTransitionZ = 0f;
+            float currTransitionX = 0f, currTransitionY = 0f, currTransitionZ = 0f;
+
+            prevTransitionX = (previousX_IsSine) ? previousSineValueX : (previousX_IsAnimCurve) ? previousX_Curve.Evaluate(lerpTimer) : 0f;
+            prevTransitionY = (previousY_IsSine) ? previousSineValueY : (previousY_IsAnimCurve) ? previousY_Curve.Evaluate(lerpTimer) : 0f;
+            prevTransitionZ = (previousZ_IsSine) ? previousSineValueZ : (previousZ_IsAnimCurve) ? previousZ_Curve.Evaluate(lerpTimer) : 0f;
+
+            currTransitionX = (currentX_IsSine) ? currentSineValueX : (currentX_IsAnimCurve) ? currentX_Curve.Evaluate(lerpTimer) : 0f;
+            currTransitionY = (currentY_IsSine) ? currentSineValueY : (currentY_IsAnimCurve) ? currentY_Curve.Evaluate(lerpTimer) : 0f;
+            currTransitionZ = (currentZ_IsSine) ? currentSineValueZ : (currentZ_IsAnimCurve) ? currentZ_Curve.Evaluate(lerpTimer) : 0f;
+
+            float transitionX = Mathf.Lerp(prevTransitionX, currTransitionX, transitionTime);
+            float transitionY = Mathf.Lerp(prevTransitionY, currTransitionY, transitionTime);
+            float transitionZ = Mathf.Lerp(prevTransitionZ, currTransitionZ, transitionTime);
+
+            localX += transitionX;
+            localY += transitionY;
+            localZ += transitionZ;
 
             if (movePosition)
-                // Applying values to new position
                 currentObject.transform.localPosition = new Vector3(localX, localY, localZ);
 
 
             if (moveRotation)
             {
+                float transitionX_amplitude = Mathf.Lerp(previousX_amplitude, currentX_amplitude, transitionTime);
+                float transitionY_amplitude = Mathf.Lerp(previousY_amplitude, currentY_amplitude, transitionTime);
+                float transitionZ_amplitude = Mathf.Lerp(previousZ_amplitude, currentZ_amplitude, transitionTime);
+
+                float transitionX_returnOffset = Mathf.Lerp(previousX_return_Offset, currentX_return_Offset, transitionTime);
+                float transitionY_returnOffset = Mathf.Lerp(previousY_return_Offset, currentY_return_Offset, transitionTime);
+                float transitionZ_returnOffset = Mathf.Lerp(previousZ_return_Offset, currentZ_return_Offset, transitionTime);
+
                 // Actual min-max angles, considering initial orientations of objects as well as the return offset values
-                float minXAngle = initialLocalRotationX - X_amplitude + X_return_Offset;
-                float maxXAngle = initialLocalRotationX + X_amplitude + X_return_Offset;
-                float minYAngle = initialLocalRotationY - Y_amplitude + Y_return_Offset;
-                float maxYAngle = initialLocalRotationY + Y_amplitude + Y_return_Offset;
-                float minZAngle = initialLocalRotationZ - Z_amplitude + Z_return_Offset;
-                float maxZAngle = initialLocalRotationZ + Z_amplitude + Z_return_Offset;
+                float minXAngle = initialLocalRotationX - transitionX_amplitude + transitionX_returnOffset;
+                float maxXAngle = initialLocalRotationX + transitionX_amplitude + transitionX_returnOffset;
+                float minYAngle = initialLocalRotationY - transitionY_amplitude + transitionY_returnOffset;
+                float maxYAngle = initialLocalRotationY + transitionY_amplitude + transitionY_returnOffset;
+                float minZAngle = initialLocalRotationZ - transitionZ_amplitude + transitionZ_returnOffset;
+                float maxZAngle = initialLocalRotationZ + transitionZ_amplitude + transitionZ_returnOffset;
 
                 // Using values being returned from curve calculations and normalising it (to use in Lerp)
-                float xRotationNormalised = Mathf.InverseLerp(-X_amplitude + X_return_Offset, X_amplitude + X_return_Offset, localX);
-                float yRotationNormalised = Mathf.InverseLerp(-Y_amplitude + Y_return_Offset, Y_amplitude + Y_return_Offset, localY);
-                float zRotationNormalised = Mathf.InverseLerp(-Z_amplitude + Z_return_Offset, Z_amplitude + Z_return_Offset, localZ);
+                float xRotationNormalised = Mathf.InverseLerp(-transitionX_amplitude + transitionX_returnOffset, transitionX_amplitude + transitionX_returnOffset, localX);
+                float yRotationNormalised = Mathf.InverseLerp(-transitionY_amplitude + transitionY_returnOffset, transitionY_amplitude + transitionY_returnOffset, localY);
+                float zRotationNormalised = Mathf.InverseLerp(-transitionZ_amplitude + transitionZ_returnOffset, transitionZ_amplitude + transitionZ_returnOffset, localZ);
 
                 float xAngle = 0f, yAngle = 0f, zAngle = 0f;
                 // Lerping between min-max angles, using above normalised return values
-                if (x_IsSine)
+                if (currentX_IsSine)
                     xAngle = Mathf.Lerp(minXAngle, maxXAngle, xRotationNormalised);
-                if (y_IsSine)
+                if (currentY_IsSine)
                     yAngle = Mathf.Lerp(minYAngle, maxYAngle, yRotationNormalised);
-                if(z_IsSine)
+                if(currentZ_IsSine)
                     zAngle = Mathf.Lerp(minZAngle, maxZAngle, zRotationNormalised);
 
-                if (x_IsAnimCurve)
+                if (currentX_IsAnimCurve)
                     xAngle = localX;
-                if (y_IsAnimCurve)
+                if (currentY_IsAnimCurve)
                     yAngle = localY;
-                if (z_IsAnimCurve)
+                if (currentZ_IsAnimCurve)
                     zAngle = localZ;
 
                 // Applying angles to local rotation of object
@@ -256,13 +337,15 @@ public class MoverControls : MonoBehaviour
             }
         }
 
+        float transitionStepDistance = Mathf.Lerp(previousStepDistance, currentStepDistance, transitionTime);
+
         // == Multiply the step movement by step distance == //
-        stepControllerL.transform.localPosition += positionScale(stepControllerL, 0, 0, 1); // use 1 for axis to scale
-        stepControllerR.transform.localPosition += positionScale(stepControllerR, 0, 0, 1);
+        stepControllerL.transform.localPosition += positionScale(stepControllerL, transitionStepDistance, 0, 0, 1); // use 1 for axis to scale
+        stepControllerR.transform.localPosition += positionScale(stepControllerR, transitionStepDistance, 0, 0, 1);
 
         // == Multiply the arm swing movement by step distance == //
-        armControllerL.transform.localPosition += positionScale(armControllerL, 0, 0, 1);
-        armControllerR.transform.localPosition += positionScale(armControllerR, 0, 0, 1);
+        armControllerL.transform.localPosition += positionScale(armControllerL, transitionStepDistance, 0, 0, 1);
+        armControllerR.transform.localPosition += positionScale(armControllerR, transitionStepDistance, 0, 0, 1);
 
         previousRootPosition = currentRootPosition;
     }
@@ -272,13 +355,14 @@ public class MoverControls : MonoBehaviour
         return Mathf.Sin((time + phaseOffset) * frequency) * amplitude + returnOffset;
     }
 
-    Vector3 positionScale(GameObject objectToScale, float xScaleFactor, float yScaleFactor, float zScaleFactor)
+    Vector3 positionScale(GameObject objectToScale, float transitionStepLength, float xScaleFactor, float yScaleFactor, float zScaleFactor)
     {
         Vector3 objectLocalPosition = objectToScale.transform.localPosition;
         
-        xScaleFactor *= currentStepDistance;
-        yScaleFactor *= currentStepDistance;
-        zScaleFactor *= currentStepDistance;
+        xScaleFactor *= transitionStepLength;
+        yScaleFactor *= transitionStepLength;
+        zScaleFactor *= transitionStepLength;
+        Debug.Log(transitionStepLength);
 
         float scaledXPosition = objectLocalPosition.x * xScaleFactor;
         float scaledYPosition = objectLocalPosition.y * yScaleFactor;
@@ -286,6 +370,21 @@ public class MoverControls : MonoBehaviour
 
         Vector3 scaledPosition = new Vector3(scaledXPosition, scaledYPosition, scaledZPosition);
         return scaledPosition;
+    }
+    private IEnumerator TransitionTimer() 
+    {
+        transitionTime = 0f;
+
+        while (transitionTime < 1f)
+        {
+            transitionTime += Time.deltaTime * transitionSpeed;
+            Debug.Log("TransitionTime: " + transitionTime);
+            yield return null;
+        }
+        
+
+        // Ensure the timer stays at 1 at the end
+        transitionTime = 1f;
     }
 }
 
