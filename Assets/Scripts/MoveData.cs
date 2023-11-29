@@ -55,7 +55,7 @@ public class MoveData : ScriptableObject
         [HideInInspector] public float yLocalAngle;
         [HideInInspector] public float zLocalAngle;
     }
-
+    public float transitionDuration = 0.1f;
     public float moveSpeed = 1f;
     public float stepDistance = 1f;
     public bool movingRootPosition = false;

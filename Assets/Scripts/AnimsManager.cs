@@ -13,7 +13,6 @@ public class AnimsManager : MonoBehaviour
     private bool animsIndexChanged = false;
     [HideInInspector]
     public bool transitionTrue = false;
-    public float transitionSpeed = 5f;
 
     void Awake()
     {
@@ -21,6 +20,7 @@ public class AnimsManager : MonoBehaviour
         currentAnim = anims[animsIndex];
         previousAnim = currentAnim;
         animsIndexChanged = false;
+        Debug.Log(currentAnim);
     }
     void Update()
     {
