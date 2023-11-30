@@ -134,6 +134,7 @@ public class MoverControls : MonoBehaviour
         transitionDuration = currentMoveData.transitionDuration;
         currentStepDistance = currentMoveData.stepDistance;
         previousStepDistance = previousMoveData.stepDistance;
+        movingRootPosition = currentMoveData.movingRootPosition;
 
         currentRootPosition = rootObject.transform.position;
         float moveAmount = Vector3.Distance(previousRootPosition, currentRootPosition); // might have to recalculate this to use vector2 (z,x)
@@ -145,8 +146,8 @@ public class MoverControls : MonoBehaviour
         if(movingRootPosition)
             moverTime += moveAmount; // use this if movement IS related to character movement in world space
 
-        if (moverTime >= Mathf.PI * 2) moverTime = 0f;
-        float lerpTimer = Mathf.InverseLerp(0, Mathf.PI * 2, moverTime);
+        if (moverTime >= Mathf.PI) moverTime = 0f;
+        float lerpTimer = Mathf.InverseLerp(0, (Mathf.PI), moverTime);
 
         if (transitionTrigger)
         {
@@ -271,11 +272,11 @@ public class MoverControls : MonoBehaviour
                         zAngle = Mathf.Lerp(minZAngle, maxZAngle, zRotationNormalised);
 
                     if (currentX_IsAnimCurve)
-                        xAngle = localX;
+                        xAngle = initialLocalRotationX + localX;
                     if (currentY_IsAnimCurve)
-                        yAngle = localY;
+                        yAngle = initialLocalRotationY + localY;
                     if (currentZ_IsAnimCurve)
-                        zAngle = localZ;
+                        zAngle = initialLocalRotationX + localZ;
 
                     // Applying angles to local rotation of object
                     currentObject.transform.localRotation = Quaternion.Euler(xAngle, yAngle, zAngle);
@@ -382,11 +383,11 @@ public class MoverControls : MonoBehaviour
                         zAngle = Mathf.Lerp(minZAngle, maxZAngle, zRotationNormalised);
 
                     if (currentX_IsAnimCurve)
-                        xAngle = localX;
+                        xAngle = initialLocalRotationX + localX;
                     if (currentY_IsAnimCurve)
-                        yAngle = localY;
+                        yAngle = initialLocalRotationY + localY;
                     if (currentZ_IsAnimCurve)
-                        zAngle = localZ;
+                        zAngle = initialLocalRotationX + localZ;
 
                     // Applying angles to local rotation of object
                     currentObject.transform.localRotation = Quaternion.Euler(xAngle, yAngle, zAngle);
@@ -419,7 +420,6 @@ public class MoverControls : MonoBehaviour
         xScaleFactor *= transitionStepLength;
         yScaleFactor *= transitionStepLength;
         zScaleFactor *= transitionStepLength;
-        Debug.Log(transitionStepLength);
 
         float scaledXPosition = objectLocalPosition.x * xScaleFactor;
         float scaledYPosition = objectLocalPosition.y * yScaleFactor;

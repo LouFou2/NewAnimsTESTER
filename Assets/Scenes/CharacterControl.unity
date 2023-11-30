@@ -1860,7 +1860,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614576688}
-  m_LocalRotation: {x: -0.0033145475, y: -0.000000014211118, z: -4.7103686e-11, w: 0.9999945}
+  m_LocalRotation: {x: -0.003314548, y: -0.00000001391554, z: -4.612398e-11, w: 0.9999945}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2186,12 +2186,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anims:
-  - {fileID: 11400000, guid: 48cc166507ca8a34691222fb0d66273e, type: 2}
   - {fileID: 11400000, guid: d8c8f959abe66774bbae612e119a4626, type: 2}
+  - {fileID: 11400000, guid: 48cc166507ca8a34691222fb0d66273e, type: 2}
   currentAnim: {fileID: 0}
   previousAnim: {fileID: 0}
   transitionTrue: 0
-  transitionSpeed: 5
 --- !u!1 &707663998
 GameObject:
   m_ObjectHideFlags: 0

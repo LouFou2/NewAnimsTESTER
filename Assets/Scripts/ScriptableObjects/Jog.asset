@@ -15,17 +15,18 @@ MonoBehaviour:
   updated:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 1
-  stepDistance: 8
-  movingRootPosition: 1
+  transitionDuration: 5
+  moveSpeed: 3
+  stepDistance: 4
+  movingRootPosition: 0
   moverObjectsParameters:
   - objectName: StepControl_L
     movePosition: 1
     moveRotation: 0
     x_Sine: 1
     x_AnimCurve: 0
-    y_Sine: 1
-    y_AnimCurve: 0
+    y_Sine: 0
+    y_AnimCurve: 1
     z_Sine: 1
     z_AnimCurve: 0
     X_frequency: 2
@@ -36,13 +37,22 @@ MonoBehaviour:
     X_ClampMax: 1
     X_Curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
       m_RotationOrder: 0
     Y_frequency: 2
     Y_amplitude: 2
-    Y_phaseOffset: 0.25
+    Y_phaseOffset: 0.5
     Y_returnValueOffset: 0
     Y_ClampMin: 0
     Y_ClampMax: 10
@@ -50,13 +60,40 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.0010147095
+        value: 1.9919612
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.22
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.39617917
+        value: 0.044921875
+        inSlope: 0.6263259
+        outSlope: 0.6263259
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.08957308
+      - serializedVersion: 3
+        time: 1
+        value: 1.9919612
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -165,8 +202,8 @@ MonoBehaviour:
     moveRotation: 0
     x_Sine: 1
     x_AnimCurve: 0
-    y_Sine: 1
-    y_AnimCurve: 0
+    y_Sine: 0
+    y_AnimCurve: 1
     z_Sine: 1
     z_AnimCurve: 0
     X_frequency: 2
@@ -183,8 +220,8 @@ MonoBehaviour:
       m_RotationOrder: 0
     Y_frequency: 2
     Y_amplitude: -2
-    Y_phaseOffset: 0.25
-    Y_returnValueOffset: 0
+    Y_phaseOffset: 0.5
+    Y_returnValueOffset: 2
     Y_ClampMin: 0
     Y_ClampMax: 10
     Y_Curve:
@@ -192,13 +229,40 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: -0.09774626
-        outSlope: -0.09774626
+        value: 0.51006
+        inSlope: 6.0353794
+        outSlope: 6.0353794
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.25
+        value: 2.018905
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.7196045
+        value: -0.005432129
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9959717
+        value: 0.51005995
+        inSlope: 4.642991
+        outSlope: 4.642991
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.13955376
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
@@ -322,12 +386,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 2
-    Y_amplitude: 0
+    Y_frequency: 4
+    Y_amplitude: 1.3
     Y_phaseOffset: 0
-    Y_returnValueOffset: 0
-    Y_ClampMin: 0
-    Y_ClampMax: 0
+    Y_returnValueOffset: -0.3
+    Y_ClampMin: -10
+    Y_ClampMax: 10
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -335,9 +399,9 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: -0.6
+    Z_amplitude: -0.4
     Z_phaseOffset: 0
-    Z_returnValueOffset: 0
+    Z_returnValueOffset: -0.16
     Z_ClampMin: -5
     Z_ClampMax: 5
     Z_Curve:
@@ -373,12 +437,12 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 0
       m_RotationOrder: 0
-    Y_frequency: 2
-    Y_amplitude: 0
+    Y_frequency: 4
+    Y_amplitude: 1.3
     Y_phaseOffset: 0
-    Y_returnValueOffset: 0
-    Y_ClampMin: 0
-    Y_ClampMax: 0
+    Y_returnValueOffset: -0.3
+    Y_ClampMin: -10
+    Y_ClampMax: 10
     Y_Curve:
       serializedVersion: 2
       m_Curve: []
@@ -386,9 +450,9 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: 0.6
+    Z_amplitude: 0.4
     Z_phaseOffset: 0
-    Z_returnValueOffset: 0
+    Z_returnValueOffset: -0.16
     Z_ClampMin: -5
     Z_ClampMax: 5
     Z_Curve:
@@ -425,9 +489,9 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 4
-    Y_amplitude: 2
-    Y_phaseOffset: 0.07
-    Y_returnValueOffset: -0.3
+    Y_amplitude: 1.3
+    Y_phaseOffset: 0
+    Y_returnValueOffset: -0.7
     Y_ClampMin: -6
     Y_ClampMax: 6
     Y_Curve:
@@ -464,9 +528,9 @@ MonoBehaviour:
     z_Sine: 1
     z_AnimCurve: 0
     X_frequency: 4
-    X_amplitude: 7
+    X_amplitude: 3
     X_phaseOffset: 0.15
-    X_returnValueOffset: 30
+    X_returnValueOffset: 1.6
     X_ClampMin: -90
     X_ClampMax: 90
     X_Curve:
@@ -488,7 +552,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: -5
+    Z_amplitude: -10
     Z_phaseOffset: 0.2
     Z_returnValueOffset: 0
     Z_ClampMin: -45
@@ -517,7 +581,7 @@ MonoBehaviour:
     X_frequency: 4
     X_amplitude: 10
     X_phaseOffset: 0
-    X_returnValueOffset: 18.6
+    X_returnValueOffset: 6.4
     X_ClampMin: -90
     X_ClampMax: 90
     X_Curve:
@@ -539,7 +603,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 0
     Z_frequency: 2
-    Z_amplitude: 5
+    Z_amplitude: 15
     Z_phaseOffset: 0.5
     Z_returnValueOffset: 0
     Z_ClampMin: -90
@@ -592,7 +656,7 @@ MonoBehaviour:
     Z_frequency: 2
     Z_amplitude: 0
     Z_phaseOffset: 0
-    Z_returnValueOffset: 6.59
+    Z_returnValueOffset: 4.65
     Z_ClampMin: -10
     Z_ClampMax: 10
     Z_Curve:
@@ -617,7 +681,7 @@ MonoBehaviour:
     z_Sine: 1
     z_AnimCurve: 0
     X_frequency: 2
-    X_amplitude: 45
+    X_amplitude: 60
     X_phaseOffset: -0.15
     X_returnValueOffset: 0
     X_ClampMin: -90
@@ -668,7 +732,7 @@ MonoBehaviour:
     z_Sine: 1
     z_AnimCurve: 0
     X_frequency: 2
-    X_amplitude: -45
+    X_amplitude: -60
     X_phaseOffset: -0.15
     X_returnValueOffset: 0
     X_ClampMin: -90
@@ -712,23 +776,86 @@ MonoBehaviour:
   - objectName: BallPivot_L
     movePosition: 0
     moveRotation: 1
-    x_Sine: 1
-    x_AnimCurve: 0
+    x_Sine: 0
+    x_AnimCurve: 1
     y_Sine: 1
     y_AnimCurve: 0
     z_Sine: 1
     z_AnimCurve: 0
-    X_frequency: 2
+    X_frequency: 4
     X_amplitude: -45
-    X_phaseOffset: 0
+    X_phaseOffset: 1
     X_returnValueOffset: 0
     X_ClampMin: 0
     X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.33732587
+        value: 40
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.6019125
+        value: -0.000004921574
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.75
+        value: 0
+        inSlope: 0.000016617116
+        outSlope: 0.000016617116
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0.010747008
+        outSlope: 0.010747008
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.4998459
+        value: 0.010743695
+        inSlope: 0.021494016
+        outSlope: 0.021494016
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
       m_RotationOrder: 0
     Y_frequency: 2
     Y_amplitude: 0
@@ -763,22 +890,85 @@ MonoBehaviour:
   - objectName: BallPivot_R
     movePosition: 0
     moveRotation: 1
-    x_Sine: 1
-    x_AnimCurve: 0
+    x_Sine: 0
+    x_AnimCurve: 1
     y_Sine: 1
     y_AnimCurve: 0
     z_Sine: 1
     z_AnimCurve: 0
-    X_frequency: 2
-    X_amplitude: 45
-    X_phaseOffset: 0
+    X_frequency: 4
+    X_amplitude: -45
+    X_phaseOffset: 1
     X_returnValueOffset: 0
     X_ClampMin: 0
     X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 24.569641
+        inSlope: -122.9272
+        outSlope: -122.9272
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.19987148
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.75
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.7561248
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.8485692
+        value: 49.001675
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.2033126
+        value: 0.08990144
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.4998459
+        value: 0.010743695
+        inSlope: -0.26694393
+        outSlope: -0.26694393
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
       m_PostInfinity: 0
       m_RotationOrder: 0
     Y_frequency: 2
@@ -814,15 +1004,15 @@ MonoBehaviour:
   - objectName: HeelPivot_L
     movePosition: 0
     moveRotation: 1
-    x_Sine: 1
-    x_AnimCurve: 0
+    x_Sine: 0
+    x_AnimCurve: 1
     y_Sine: 1
     y_AnimCurve: 0
     z_Sine: 1
     z_AnimCurve: 0
     X_frequency: 2
     X_amplitude: -20
-    X_phaseOffset: 0.1
+    X_phaseOffset: 1.1
     X_returnValueOffset: 0
     X_ClampMin: -45
     X_ClampMax: 0
@@ -831,13 +1021,58 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.48593485
+        value: 0
+        inSlope: -360
+        outSlope: -360
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.125
+        value: -45
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.25
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.5
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.75
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
@@ -874,8 +1109,8 @@ MonoBehaviour:
   - objectName: HeelPivot_R
     movePosition: 0
     moveRotation: 1
-    x_Sine: 1
-    x_AnimCurve: 0
+    x_Sine: 0
+    x_AnimCurve: 1
     y_Sine: 1
     y_AnimCurve: 0
     z_Sine: 1
@@ -890,13 +1125,67 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0014662757
-        value: 0.48593488
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.125
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.25
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.5
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.625
+        value: -45
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.75
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -934,23 +1223,77 @@ MonoBehaviour:
   - objectName: ToePivot_L
     movePosition: 0
     moveRotation: 1
-    x_Sine: 1
-    x_AnimCurve: 0
+    x_Sine: 0
+    x_AnimCurve: 1
     y_Sine: 0
     y_AnimCurve: 0
     z_Sine: 0
     z_AnimCurve: 0
     X_frequency: 2
-    X_amplitude: 70
-    X_phaseOffset: 0.3
+    X_amplitude: -70
+    X_phaseOffset: -0.2
     X_returnValueOffset: 0
     X_ClampMin: 0
     X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0010147095
+        value: 39.71454
+        inSlope: -573.95703
+        outSlope: -573.95703
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.099991105
+      - serializedVersion: 3
+        time: 0.10041929
+        value: 0.06475179
+        inSlope: 0.68533623
+        outSlope: 0.68533623
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.2489624
+        value: 0.12939453
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.39712316
+        value: 2.5113983
+        inSlope: 37.63484
+        outSlope: 37.63484
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.14845806
+      - serializedVersion: 3
+        time: 0.8626404
+        value: 69.52158
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 40.1026
+        inSlope: -398.60034
+        outSlope: -398.60034
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.11813694
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
       m_RotationOrder: 0
     Y_frequency: 0
     Y_amplitude: 0
@@ -985,23 +1328,68 @@ MonoBehaviour:
   - objectName: ToePivot_R
     movePosition: 0
     moveRotation: 1
-    x_Sine: 1
-    x_AnimCurve: 0
+    x_Sine: 0
+    x_AnimCurve: 1
     y_Sine: 0
     y_AnimCurve: 0
     z_Sine: 0
     z_AnimCurve: 0
     X_frequency: 2
-    X_amplitude: -70
-    X_phaseOffset: 0.3
+    X_amplitude: 70
+    X_phaseOffset: -0.2
     X_returnValueOffset: 0
     X_ClampMin: 0
     X_ClampMax: 90
     X_Curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 140.1132
+        outSlope: 140.1132
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.49756944
+        value: 69.71605
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.64998925
+        value: 5.820946
+        inSlope: -131.86305
+        outSlope: -131.86305
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.13186347
+        outWeight: 0.3564362
+      - serializedVersion: 3
+        time: 0.75
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
       m_RotationOrder: 0
     Y_frequency: 0
     Y_amplitude: 0

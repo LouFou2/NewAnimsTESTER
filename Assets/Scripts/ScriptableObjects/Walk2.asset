@@ -15,6 +15,7 @@ MonoBehaviour:
   updated:
     m_PersistentCalls:
       m_Calls: []
+  transitionDuration: 5
   moveSpeed: 1
   stepDistance: 4
   movingRootPosition: 1
