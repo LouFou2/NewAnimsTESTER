@@ -19,10 +19,10 @@ public class MoverControls : MonoBehaviour
     private Vector3 previousRootPosition;
     private Vector3 currentRootPosition;
 
-    // == Have to add the objects that control the legs == //
+    // == Have to add the objects that control the legs IK == //
     [SerializeField] private GameObject stepControllerL;
     [SerializeField] private GameObject stepControllerR;
-    // == Have to add the objects that control the armss == //
+    // == Have to add the objects that control the arms IK == //
     [SerializeField] private GameObject armControllerL;
     [SerializeField] private GameObject armControllerR;
 
@@ -30,8 +30,6 @@ public class MoverControls : MonoBehaviour
     [SerializeField] private GameObject[] moverObjects; // IMPORTANT: this array HAS to have same objects as scriptable object, in SAME ORDER
 
     private float idleMoveSpeed;
-    private float previousMoveSpeed; //*** do I need these?
-    private float nextMoveSpeed;
 
     private float previousStepDistance;
     private float nextStepDistance;
@@ -40,9 +38,6 @@ public class MoverControls : MonoBehaviour
     private float transitionValue = 0f; //transition time is at 0 (lerp previous/current - next) to set values to "current"
 
     private float startWalkingThreshold;
-
-    private float transitionDuration; // *** eventually I might not need these
-    private bool transitionTrigger = false;
 
     private void Awake()
     {
@@ -80,22 +75,16 @@ public class MoverControls : MonoBehaviour
                 objParams.zLocalPosition = objectLocalPosition.z;
 
                 // == The Orientation == //
-                Quaternion objectLocalOrientation = currentObject.transform.localRotation;
                 objParams.xLocalAngle = currentObject.transform.localEulerAngles.x; // Also passing initial angles to Move Data
                 objParams.yLocalAngle = currentObject.transform.localEulerAngles.y;
                 objParams.zLocalAngle = currentObject.transform.localEulerAngles.z;
             }
 
-            previousMoveSpeed = walkPreviousMoveData.moveSpeed;
-            nextMoveSpeed = walkNextMoveData.moveSpeed; // *** might not need these...
-
-            idleMoveSpeed = walkAnimsManager.idleAnim.moveSpeed; // ...*** and instead use this.
-
+            idleMoveSpeed = walkAnimsManager.idleAnim.moveSpeed;
 
             previousStepDistance = walkPreviousMoveData.stepDistance;
             nextStepDistance = walkNextMoveData.stepDistance;
 
-            transitionDuration = walkPreviousMoveData.transitionDuration;
             movingRootPosition = walkPreviousMoveData.movingRootPosition;
 
             currentRootPosition = rootObject.transform.position;
@@ -107,10 +96,6 @@ public class MoverControls : MonoBehaviour
         }
 
         startWalkingThreshold = walkAnimsManager.walkThreshold;
-
-        transitionValue = 0f;
-        transitionTrigger = false; // *** cut this later?
-
     }
     private void OnEnable()
     {
@@ -128,7 +113,7 @@ public class MoverControls : MonoBehaviour
     }
     void MoveDataUpdates()
     {
-        previousMoveSpeed = walkPreviousMoveData.moveSpeed; // *** do I even need this?
+        idleMoveSpeed = walkAnimsManager.idleAnim.moveSpeed; // *** do I even need this?
 
         previousStepDistance = walkPreviousMoveData.stepDistance;
         movingRootPosition = walkPreviousMoveData.movingRootPosition;
@@ -141,8 +126,8 @@ public class MoverControls : MonoBehaviour
 
     void Update()
     {
-        walkPreviousMoveData = walkAnimsManager.previousAnim;   // transitions always lerp from previous - next
-        walkNextMoveData = walkAnimsManager.nextAnim;           // "previous" is also "current" (think of it like 0-1: previous 0, next 1)
+        walkPreviousMoveData = walkAnimsManager.previousAnim;   // transitions always lerp from previous - next (previous 0, next 1)
+        walkNextMoveData = walkAnimsManager.nextAnim;           // "previous" is also "current" 
 
         previousStepDistance = walkPreviousMoveData.stepDistance;
         nextStepDistance = walkNextMoveData.stepDistance;
@@ -151,21 +136,25 @@ public class MoverControls : MonoBehaviour
         currentRootPosition = rootObject.transform.position;
         float moveAmount = Vector3.Distance(previousRootPosition, currentRootPosition); // might have to recalculate this to use vector2 (z,x)
 
+        // == Time + Movement + Transitions == //
+
         if (!movingRootPosition) 
         {
-            HandleIdle(); // use this if movement is NOT related to character movement in world space
+            moverTime = IdleTime(); // use this if movement is NOT related to character movement in world space
         }
 
         if (movingRootPosition)
         {
             moverTime += moveAmount; // use this if movement IS related to character movement in world space
-            HandleWalkTransitions();
+            transitionValue = WalkTransitionValue();
         }
 
         if (moverTime >= Mathf.PI) moverTime = 0f;
         float lerpTimer = Mathf.InverseLerp(0, (Mathf.PI), moverTime);
 
         bool isTransitioning = (transitionValue > startWalkingThreshold) ? true : false;
+
+        // === Iterate Through Objects to Move == //
 
         for (int i = 0; i < walkPreviousMoveData.moverObjectsParameters.Length; i++)
         {
@@ -175,7 +164,7 @@ public class MoverControls : MonoBehaviour
             GameObject currentObject = moverObjects[i];
 
             if (!isTransitioning)
-                HandleNonTransition(previousObjParams, currentObject, lerpTimer);
+                HandleIdle(previousObjParams, currentObject, lerpTimer);
 
             if (isTransitioning)
                 HandleAnimTransition(previousObjParams, nextObjParams, currentObject, lerpTimer);
@@ -185,7 +174,7 @@ public class MoverControls : MonoBehaviour
         
         previousRootPosition = currentRootPosition;
     }
-    void HandleNonTransition(MoveData.ObjectParameters previousObjParams, GameObject currentObject, float lerpTimer) 
+    void HandleIdle(MoveData.ObjectParameters previousObjParams, GameObject currentObject, float lerpTimer) 
     {
         bool movePosition = previousObjParams.movePosition; // these should stay the same ( bool movePosition = prev.. = next...)
         bool moveRotation = previousObjParams.moveRotation; // (the parameter setup should remain the same for different anims)
@@ -519,22 +508,25 @@ public class MoverControls : MonoBehaviour
         return scaledPosition;
     }
    
-    void HandleIdle()
+    float IdleTime()
     {
         transitionValue = 0f;
         float idleTime = moverTime;
-        idleTime += Time.deltaTime * walkAnimsManager.idleAnim.moveSpeed;
-        moverTime = idleTime;
+        idleTime += Time.deltaTime * idleMoveSpeed;
+        return idleTime;
     }
     
-    void HandleWalkTransitions() 
+    float WalkTransitionValue() 
     {
         float walkToJog = playerController.movementInput.magnitude;
         
         if (walkToJog >= startWalkingThreshold)
         {
-            transitionValue = Mathf.InverseLerp(startWalkingThreshold, 1, walkToJog);
+            float movingInputValue = Mathf.InverseLerp(startWalkingThreshold, 1, walkToJog);
+            return movingInputValue;
         }
+        else
+            return IdleTime();
     }
 }
 

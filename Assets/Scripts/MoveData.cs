@@ -55,7 +55,9 @@ public class MoveData : ScriptableObject
     public float transitionDuration = 0.1f;
     public float moveSpeed = 1f;
     public float stepDistance = 1f;
-    public bool movingRootPosition = false;
+
+    public bool movingRootPosition = false; //*** could probably remove this later (useful for making anims)
+
     [Header("LegIK Targets Z position Amplitude should be 1 unit\n 'Amplitude' is set by Step Distance")]
     //[Header("'Amplitude' is set by Step Distance")]
     public ObjectParameters[] moverObjectsParameters;
